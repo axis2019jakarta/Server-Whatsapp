@@ -19,6 +19,7 @@
       --accent: #8A4FFF;
       --accent-glow: rgba(138, 79, 255, 0.5);
       --green: #25D366;
+      --green-glow: rgba(37, 211, 102, 0.4);
       --br: 18px;
       --shadow: 0 10px 40px rgba(0,0,0,.5);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -52,6 +53,7 @@
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 24px;
+      align-items: start;
     }
     .card{
       background: var(--panel);
@@ -94,8 +96,6 @@
       border-color: var(--accent);
       box-shadow: 0 0 15px var(--accent-glow);
     }
-    .icon-option { display: flex; align-items: center; gap: 10px; }
-    .icon-option svg { width: 18px; height: 18px; opacity: 0.7; }
     textarea{
       width:100%;
       background: var(--bg-light);
@@ -123,12 +123,32 @@
     .copy-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 25px var(--accent-glow); }
     .copy-btn.copied { background: linear-gradient(135deg, var(--green), #1b8b5e); }
     .copy-btn svg { width: 18px; height: 18px; }
-    iframe{
-        width: 100%;
-        height: 550px;
-        border-radius: 12px;
-        border: 1px solid var(--panel-border);
+
+    .action-btn {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      text-decoration: none;
+      width:100%; padding: 18px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), #128C7E);
+      color:white; font-weight:600; font-size: 17px;
+      box-shadow: 0 0 20px var(--green-glow);
+      transition: var(--transition);
     }
+    .action-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 25px var(--green-glow); }
+    .action-btn svg { width: 22px; height: 22px; }
+
+    .instructions { list-style: none; padding: 0; margin-top: 24px; }
+    .instructions li { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; color: var(--text-secondary); }
+    .instructions .icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--bg-light);
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--panel-border);
+    }
+    .instructions .icon svg { width: 18px; height: 18px; color: var(--accent); }
+    
     .footer { text-align:center; margin-top: 40px; color: var(--text-secondary); font-size: 14px;}
     
     @media (max-width: 950px) {
@@ -179,11 +199,28 @@
         </div>
     </div>
     
-    <div class="iframe-column">
+    <div class="action-column">
         <div class="card">
-            <div class="hd"><h2>Langkah 2: Kirim Permohonan di Sini</h2></div>
+            <div class="hd"><h2>Langkah 2: Kirim Permohonan Anda</h2></div>
             <div class="bd">
-                <iframe src="https://www.whatsapp.com/contact/?subject=messenger" frameborder="0"></iframe>
+                <a href="https://www.whatsapp.com/contact/?subject=messenger" target="_blank" rel="noopener noreferrer" class="action-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <span>Buka Formulir Resmi</span>
+                </a>
+                <ul class="instructions">
+                    <li>
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div>
+                        <span>Salin teks dari Langkah 1.</span>
+                    </li>
+                    <li>
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></div>
+                        <span>Klik tombol "Buka Formulir Resmi" di atas.</span>
+                    </li>
+                    <li>
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></div>
+                        <span>Isi data Anda & tempel teks ke kolom pesan.</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
