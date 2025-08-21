@@ -17,187 +17,170 @@
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     *{box-sizing:border-box}
+    html, body { height: 100%; margin: 0; }
     body{
-      margin:0;
       background: linear-gradient(to right, var(--bg-dark), var(--bg-mid), var(--bg-dark));
       color: var(--text-primary);
       font-family: 'Poppins', sans-serif;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
     }
-    /* --- Sidebar Navigation --- */
-    .sidebar {
-      width: 260px;
-      background: var(--panel);
-      border-right: 1px solid var(--panel-border);
-      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-      padding: 24px;
+    
+    /* --- Main App Container --- */
+    .app-container {
       display: flex;
       flex-direction: column;
-      flex-shrink: 0;
+      height: 100%;
     }
-    .sidebar-header { text-align: center; margin-bottom: 40px; }
-    .sidebar-header h1 { font-size: 22px; margin-bottom: 4px; color: var(--text-primary); font-weight: 600; }
-    .sidebar-header p { font-size: 13px; color: var(--accent); margin: 0; }
-    .nav-menu { list-style: none; padding: 0; margin: 0; }
-    .nav-menu li a {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-weight: 500;
-      transition: var(--transition);
-      margin-bottom: 8px;
-    }
-    .nav-menu li a:hover { background: rgba(138, 79, 255, 0.1); color: var(--text-primary); }
-    .nav-menu li a.active { background: var(--accent); color: white; font-weight: 600; box-shadow: 0 0 20px var(--accent-glow); }
-    .nav-menu li a svg { width: 20px; height: 20px; }
-    .sidebar-footer { margin-top: auto; text-align: center; font-size: 12px; color: var(--text-secondary); opacity: 0.6; }
 
-    /* --- Main Content --- */
-    .main-container { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
     .top-bar {
       background: rgba(0,0,0,0.2);
-      padding: 10px 24px;
+      padding: 10px 16px;
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 13px;
       white-space: nowrap;
       overflow: hidden;
       flex-shrink: 0;
     }
     .top-bar-text { display: inline-block; padding-left: 100%; animation: marquee 35s linear infinite; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-150%); } }
-    .content-area { flex-grow: 1; overflow-y: auto; padding: 24px; }
+
+    .content-area {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 24px 16px;
+      padding-bottom: 90px; /* Space for bottom nav */
+    }
     .page { display: none; }
     .page.active { display: block; animation: fadeIn 0.5s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* --- Shared Styles for Content --- */
-    .content-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; align-items: start; }
+    /* --- Bottom Navigation (Mobile First) --- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-around;
+      background: var(--panel);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      border-top: 1px solid var(--panel-border);
+      padding: 8px 0;
+      z-index: 1000;
+    }
+    .nav-link {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; padding: 4px 12px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .nav-link svg { width: 22px; height: 22px; margin-bottom: 2px; }
+    .nav-link.active { color: var(--accent); }
+    .nav-link:active { transform: scale(0.95); }
+
+    /* --- Shared Content Styles (Mobile First) --- */
+    .content-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     .card {
       background: var(--panel); border: 1px solid var(--panel-border);
       border-radius: var(--br); box-shadow: var(--shadow);
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       overflow: hidden; margin-bottom: 24px;
     }
-    .card .hd { display:flex;align-items:center;gap:12px; padding: 20px 24px; border-bottom: 1px solid var(--panel-border); background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0)); }
+    .card .hd { display:flex;align-items:center;gap:12px; padding: 20px; border-bottom: 1px solid var(--panel-border); background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0)); }
     .card .hd h2 { margin:0;font-size:18px; font-weight: 600; }
-    .card .bd { padding: 24px; }
+    .card .bd { padding: 20px; }
     
-    /* --- Specific Page Styles --- */
-    /* Page: Banding */
     select, textarea {
       width:100%; background-color: var(--bg-light); border: 1px solid var(--panel-border);
-      border-radius: 12px; padding: 12px 16px; color: var(--text-primary);
-      font-family: inherit; font-size: 15px; transition: var(--transition);
+      border-radius: 12px; padding: 14px 16px; color: var(--text-primary);
+      font-family: inherit; font-size: 16px; transition: var(--transition);
     }
-    textarea { height: 300px; font-family: 'Menlo', 'Consolas', monospace; color: var(--text-secondary); resize: none; }
-    .btn { appearance:none; border:0; cursor:pointer; width:100%; padding:14px; border-radius: 12px; color:white; font-weight:600; font-size:16px; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    textarea { height: 280px; font-family: 'Menlo', 'Consolas', monospace; color: var(--text-secondary); resize: none; font-size: 14px; }
+    .btn { appearance:none; border:0; cursor:pointer; width:100%; padding:16px; border-radius: 12px; color:white; font-weight:600; font-size:16px; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
     .copy-btn { background: linear-gradient(135deg, var(--accent), #6a11cb); box-shadow: 0 0 20px var(--accent-glow); }
-    .copy-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 25px var(--accent-glow); }
     .copy-btn.copied { background: linear-gradient(135deg, var(--green), #1b8b5e); }
     .action-btn { background: linear-gradient(135deg, var(--green), #128C7E); box-shadow: 0 0 20px var(--green-glow); padding: 18px; font-size: 17px; }
-    .action-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 25px var(--green-glow); }
     .instructions { list-style: none; padding: 0; margin-top: 24px; }
-    .instructions li { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; color: var(--text-secondary); }
-    .instructions .icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: var(--bg-light); display: grid; place-items: center; border: 1px solid var(--panel-border); }
-    
-    /* Page: Layanan */
-    .pricelist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .price-card { background: var(--bg-light); border-radius: 16px; border: 1px solid var(--panel-border); padding: 24px; text-align: center; transition: var(--transition); }
-    .price-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
-    .price-card .icon { margin-bottom: 16px; color: var(--accent); }
-    .price-card h3 { margin: 0 0 8px; font-size: 18px; }
-    .price-card .price { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
-    .price-card .price span { font-size: 16px; font-weight: 400; color: var(--text-secondary); }
-    .payment-info { margin-top: 30px; text-align: center; font-size: 16px; }
-    .payment-info img { height: 25px; vertical-align: middle; margin-right: 10px; }
-
-    /* Page: Tentang */
+    .instructions li { display: flex; align-items: start; gap: 14px; margin-bottom: 16px; color: var(--text-secondary); }
+    .instructions .icon { flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; background: var(--bg-light); display: grid; place-items: center; border: 1px solid var(--panel-border); }
+    .pricelist-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     .about-content p { color: var(--text-secondary); margin-bottom: 1.5em; line-height: 1.8; }
     .about-content h3 { color: var(--accent); font-weight: 600; margin-top: 2em; margin-bottom: 1em; border-left: 3px solid var(--accent); padding-left: 12px; }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      body { flex-direction: column; height: auto; }
-      .sidebar { width: 100%; height: auto; flex-direction: row; justify-content: center; align-items: center; padding: 8px; border-right: 0; border-bottom: 1px solid var(--panel-border);}
-      .sidebar-header { display: none; }
-      .nav-menu { display: flex; gap: 8px; }
-      .nav-menu li a { padding: 8px 14px; font-size: 14px; }
-      .sidebar-footer { display: none; }
-      .content-area { overflow-y: visible; }
+    /* --- Desktop Enhancements --- */
+    @media (min-width: 900px) {
+      .bottom-nav { display: none; } /* Hide bottom nav on desktop */
+      .app-container {
+        flex-direction: row;
+      }
+      .sidebar { /* Show sidebar on desktop */
+        display: flex; flex-direction: column; width: 260px;
+        background: var(--panel); border-right: 1px solid var(--panel-border);
+        padding: 24px; flex-shrink: 0;
+      }
+      .sidebar-header { text-align: center; margin-bottom: 40px; }
+      .sidebar-header h1 { font-size: 22px; margin-bottom: 4px; color: var(--text-primary); font-weight: 600; }
+      .sidebar-header p { font-size: 13px; color: var(--accent); margin: 0; }
+      .nav-menu { list-style: none; padding: 0; margin: 0; }
+      .nav-menu .nav-link { flex-direction: row; gap: 14px; padding: 14px 18px; font-size: 16px; margin-bottom: 8px; }
+      .nav-link.active { background: var(--accent); color: white; box-shadow: 0 0 20px var(--accent-glow); }
+      .nav-link:hover { background: rgba(138, 79, 255, 0.1); color: var(--text-primary); }
+      .sidebar-footer { margin-top: auto; text-align: center; font-size: 12px; color: var(--text-secondary); opacity: 0.6; }
+      
+      .content-area { padding: 32px; padding-bottom: 32px; }
+      .content-grid { grid-template-columns: 1fr 1.2fr; align-items: start; }
+      .pricelist-grid { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 768px) {
-      .content-grid { grid-template-columns: 1fr; }
-      .nav-menu li a span { display: none; } /* Hide text on mobile nav */
-      .nav-menu li a { padding: 10px; }
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <h1>Nabila Ahmad</h1>
-      <p>Studio Digital</p>
-    </div>
-    <ul class="nav-menu">
-      <li><a href="#page-banding" class="nav-link active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-        <span>Pusat Banding</span>
-      </a></li>
-      <li><a href="#page-layanan" class="nav-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 18.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h4l4 4v9.5z"></path><path d="M14 2v4h4"></path><path d="M9 13h2"></path><path d="M9 16h4"></path></svg>
-        <span>Layanan & Jasa</span>
-      </a></li>
-      <li><a href="#page-tentang" class="nav-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7"></path></svg>
-        <span>Tentang Developer</span>
-      </a></li>
-    </ul>
-    <div class="sidebar-footer">
-      &copy; 2025 Nabila Ahmad Studio
-    </div>
-  </aside>
+  <div class="app-container">
+    <!-- This sidebar is for DESKTOP ONLY -->
+    <aside class="sidebar" style="display: none;">
+      <div class="sidebar-header"><h1>Nabila Ahmad</h1><p>Studio Digital</p></div>
+      <ul class="nav-menu">
+        <li><a href="#page-banding" class="nav-link active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Pusat Banding</span></a></li>
+        <li><a href="#page-layanan" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 18.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h4l4 4v9.5z"></path><path d="M14 2v4h4"></path><path d="M9 13h2"></path><path d="M9 16h4"></path></svg><span>Layanan & Jasa</span></a></li>
+        <li><a href="#page-tentang" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7"></path></svg><span>Tentang Developer</span></a></li>
+      </ul>
+      <div class="sidebar-footer">&copy; 2025 Nabila Ahmad Studio</div>
+    </aside>
 
-  <!-- MAIN CONTENT -->
-  <div class="main-container">
-    <div class="top-bar">
-        <div class="top-bar-text">Selamat Datang di Pusat Bantuan Nabila Ahmad Studio! Kami menyediakan alat bantu banding WhatsApp dan solusi digital profesional untuk kebutuhan Anda. Hubungi admin untuk konsultasi gratis.</div>
-    </div>
-    <main class="content-area">
-      <!-- Page 1: Pusat Banding -->
-      <section id="page-banding" class="page active">
-        <div class="content-grid">
-            <div class="card">
-                <div class="hd"><h2>Langkah 1: Siapkan Teks Banding Anda</h2></div>
-                <div class="bd">
-                    <div class="form-group"><label for="appealType">Pilih Jenis Masalah Anda</label><select id="appealType"><option value="temporary_ban">Unbanned Akun Sementara</option><option value="permanent_ban">Unbanned Akun Permanen</option><option value="mod_app">Aplikasi Tidak Resmi (MOD)</option><option value="otp_reset">Masalah Kode Verifikasi (OTP)</option><option value="business_issue">Akun WhatsApp Business</option><option value="group_ban">Grup Dinonaktifkan</option></select></div>
-                    <div class="form-group"><label for="language">Pilih Bahasa Teks</label><select id="language"><option value="id">Bahasa Indonesia</option><option value="en">English (Bahasa Inggris)</option></select></div>
-                    <div class="form-group"><label>Teks Permohonan Siap Pakai</label><textarea id="appealText" readonly></textarea></div>
-                    <button class="btn copy-btn" id="copyBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Salin Teks</span></button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="hd"><h2>Langkah 2: Kirim Permohonan Anda</h2></div>
-                <div class="bd">
-                    <a href="https://www.whatsapp.com/contact/?subject=messenger" target="_blank" rel="noopener noreferrer" class="btn action-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Buka Formulir Resmi</span></a>
-                    <ul class="instructions">
-                        <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div><span>Salin teks dari Langkah 1.</span></li>
-                        <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></div><span>Klik tombol "Buka Formulir Resmi" di atas.</span></li>
-                        <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></div><span>Isi data Anda & tempel teks ke kolom pesan.</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      <!-- Page 2: Layanan & Jasa -->
-      <section id="page-layanan" class="page">
+    <div class="main-content-wrapper" style="flex-grow: 1; display: flex; flex-direction: column; overflow: hidden;">
+      <div class="top-bar">
+          <div class="top-bar-text">Selamat Datang di Pusat Bantuan Nabila Ahmad Studio! Kami menyediakan alat bantu banding WhatsApp dan solusi digital profesional untuk kebutuhan Anda. Hubungi admin untuk konsultasi gratis.</div>
+      </div>
+      <main class="content-area">
+        <!-- Page 1: Pusat Banding -->
+        <section id="page-banding" class="page active">
+          <div class="content-grid">
+              <div class="card">
+                  <div class="hd"><h2>Langkah 1: Siapkan Teks Banding</h2></div>
+                  <div class="bd">
+                      <div class="form-group"><label for="appealType">Pilih Jenis Masalah</label><select id="appealType"><option value="temporary_ban">Unbanned Akun Sementara</option><option value="permanent_ban">Unbanned Akun Permanen</option><option value="mod_app">Aplikasi Tidak Resmi (MOD)</option><option value="otp_reset">Masalah Kode Verifikasi (OTP)</option><option value="business_issue">Akun WhatsApp Business</option><option value="group_ban">Grup Dinonaktifkan</option></select></div>
+                      <div class="form-group"><label for="language">Pilih Bahasa</label><select id="language"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select></div>
+                      <div class="form-group"><label>Teks Permohonan</label><textarea id="appealText" readonly></textarea></div>
+                      <button class="btn copy-btn" id="copyBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Salin Teks</span></button>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="hd"><h2>Langkah 2: Kirim Permohonan</h2></div>
+                  <div class="bd">
+                      <a href="https://www.whatsapp.com/contact/?subject=messenger" target="_blank" rel="noopener noreferrer" class="btn action-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Buka Formulir Resmi</span></a>
+                      <ul class="instructions">
+                          <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div><span>Salin teks dari Langkah 1.</span></li>
+                          <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></div><span>Klik tombol "Buka Formulir Resmi" di atas.</span></li>
+                          <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></div><span>Isi data Anda & tempel teks ke kolom pesan.</span></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        </section>
+        <!-- Other pages remain the same as previous deluxe version -->
+         <section id="page-layanan" class="page">
         <div class="card">
             <div class="hd"><h2>Layanan & Jasa Profesional</h2></div>
             <div class="bd">
@@ -228,16 +211,16 @@
                     </div>
                 </div>
                 <div class="payment-info card">
-                    <p><strong>Kontak & Pembayaran</strong></p>
-                    <a href="https://api.whatsapp.com/send?phone=6285810526151" target="_blank" class="btn action-btn" style="margin-bottom: 12px;">Admin 1: 0858-1052-6151</a>
-                    <a href="https://api.whatsapp.com/send?phone=62895340205302" target="_blank" class="btn action-btn" style="background: var(--bg-light); margin-bottom: 20px;">Admin 2: 0895-3402-05302</a>
-                    <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/2560px-Gopay_logo.svg.png" alt="Gopay"> <strong>0895-3402-05302</strong></p>
+                    <div class="bd">
+                        <p style="margin-top: 0;"><strong>Kontak & Pembayaran</strong></p>
+                        <a href="https://api.whatsapp.com/send?phone=6285810526151" target="_blank" class="btn action-btn" style="margin-bottom: 12px;">Admin 1: 0858-1052-6151</a>
+                        <a href="https://api.whatsapp.com/send?phone=62895340205302" target="_blank" class="btn action-btn" style="background: var(--bg-light); margin-bottom: 20px;">Admin 2: 0895-3402-05302</a>
+                        <p style="display:flex; align-items:center; justify-content:center; margin-bottom:0;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1280px-Gopay_logo.svg.png" alt="Gopay" style="height: 20px; margin-right: 10px;"> <strong>0895-3402-05302</strong></p>
+                    </div>
                 </div>
             </div>
         </div>
       </section>
-
-      <!-- Page 3: Tentang Developer -->
       <section id="page-tentang" class="page">
         <div class="card">
             <div class="hd"><h2>Tentang Nabila Ahmad Studio</h2></div>
@@ -245,13 +228,10 @@
                 <div class="about-content">
                     <h3>Visi Kami: Memberdayakan Ide Melalui Teknologi</h3>
                     <p>Nabila Ahmad Studio bukan sekadar penyedia jasa digital; kami adalah mitra inovasi Anda. Didirikan dengan semangat untuk menjembatani ide-ide cemerlang dengan eksekusi teknologi yang presisi, kami berdedikasi untuk menciptakan solusi digital yang tidak hanya berfungsi dengan baik, tetapi juga memberikan pengalaman pengguna yang luar biasa. Visi kami adalah menjadi akselerator bagi individu dan bisnis yang ingin bertransformasi secara digital.</p>
-                    
                     <h3>Siapa di Balik Layar?</h3>
                     <p>Kami adalah tim developer, desainer, dan ahli strategi digital yang dinamis dan bersemangat. Dengan keahlian mendalam dalam pengembangan web modern, kecerdasan buatan (AI), dan otomatisasi, kami menggabungkan kreativitas dengan logika pemrograman yang solid. Setiap baris kode yang kami tulis dan setiap piksel yang kami desain didasari oleh riset, tren terkini, dan yang terpenting, pemahaman mendalam akan tujuan klien kami.</p>
-
                     <h3>Teknologi yang Kami Kuasai</h3>
                     <p>Di era digital yang serba cepat, kami berkomitmen untuk selalu berada di garis depan teknologi. Kami memanfaatkan berbagai tools dan bahasa pemrograman modern seperti JavaScript (React, Node.js), Python untuk AI dan scripting, serta HTML5 & CSS3 untuk menciptakan website yang cepat, aman, dan responsif. Baik itu membangun website e-commerce yang kompleks, merancang tools AI kustom, atau membuat script otomatisasi untuk Termux, kami memastikan setiap proyek dibangun di atas fondasi teknologi yang kokoh dan skalabel.</p>
-                    
                     <h3>Mengapa Memilih Kami?</h3>
                     <p><strong>1. Pendekatan Kolaboratif:</strong> Kami percaya bahwa proyek terbaik lahir dari komunikasi dan kolaborasi yang erat. Kami mendengarkan ide Anda, memahami kebutuhan Anda, dan bekerja bersama Anda di setiap langkahnya, dari konsep hingga peluncuran.<br><br><strong>2. Kualitas Tanpa Kompromi:</strong> Bagi kami, kualitas adalah segalanya. Kami melakukan pengujian menyeluruh untuk memastikan setiap produk yang kami rilis bebas dari bug, aman, dan berkinerja optimal di berbagai perangkat.<br><br><strong>3. Harga Kompetitif:</strong> Kami percaya bahwa solusi digital berkualitas tinggi harus dapat diakses oleh semua kalangan. Kami menawarkan harga yang sangat kompetitif tanpa mengorbankan kualitas hasil akhir.<br><br><strong>4. Dukungan Purna Jual:</strong> Hubungan kami dengan klien tidak berakhir setelah proyek selesai. Kami menyediakan dukungan untuk memastikan solusi digital Anda terus berjalan lancar.</p>
                     <p>Apakah Anda siap untuk mewujudkan proyek digital Anda berikutnya? Mari berdiskusi. Hubungi kami melalui WhatsApp dan biarkan kami membantu Anda mengubah ide menjadi kenyataan.</p>
@@ -259,37 +239,50 @@
             </div>
         </div>
       </section>
-    </main>
+      </main>
+    </div>
   </div>
-  
+
+  <!-- This bottom nav is for MOBILE ONLY -->
+  <nav class="bottom-nav">
+    <a href="#page-banding" class="nav-link active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Banding</span></a>
+    <a href="#page-layanan" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 18.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h4l4 4v9.5z"></path><path d="M14 2v4h4"></path><path d="M9 13h2"></path><path d="M9 16h4"></path></svg><span>Layanan</span></a>
+    <a href="#page-tentang" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7"></path></svg><span>Tentang</span></a>
+  </nav>
 
   <script>
-    // --- Page Navigation ---
     const navLinks = document.querySelectorAll('.nav-link');
     const pages = document.querySelectorAll('.page');
+
+    function switchPage(targetId) {
+        navLinks.forEach(nav => {
+            if (nav.getAttribute('href') === targetId) {
+                nav.classList.add('active');
+            } else {
+                nav.classList.remove('active');
+            }
+        });
+
+        pages.forEach(page => {
+            if ('#' + page.id === targetId) {
+                page.classList.add('active');
+            } else {
+                page.classList.remove('active');
+            }
+        });
+        
+        // Scroll to top of content area on page change
+        document.querySelector('.content-area').scrollTop = 0;
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
-
-            // Update active link
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            link.classList.add('active');
-
-            // Update active page
-            pages.forEach(page => {
-                if ('#' + page.id === targetId) {
-                    page.classList.add('active');
-                } else {
-                    page.classList.remove('active');
-                }
-            });
+            switchPage(targetId);
         });
     });
 
-
-    // --- Appeal Page Logic ---
     const ELS = {
         appealType: document.getElementById('appealType'),
         language: document.getElementById('language'),
@@ -329,8 +322,9 @@
     ELS.language.addEventListener('change', updateTemplate);
     ELS.copyBtn.addEventListener('click', copyToClipboard);
 
-    // Inisialisasi
+    // Initial state
     updateTemplate();
+
   </script>
 </body>
 </html>
