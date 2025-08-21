@@ -25,11 +25,6 @@
       --transition: all 0.3s ease;
     }
     *{box-sizing:border-box}
-    @keyframes gradient-animation {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
     body{
       margin:0;
       background-color: var(--bg-dark);
@@ -81,7 +76,6 @@
         font-weight: 700;
     }
     .studio-name { font-weight: 400; font-size: 1rem; color: var(--text-secondary); }
-    .sub{color:var(--text-secondary);text-align:center;margin:8px auto 20px;max-width:600px;padding:0 16px;}
     main{max-width:700px;margin:0 auto;padding:10px 16px 60px;}
     .card{
       background: var(--panel);
@@ -131,14 +125,16 @@
       box-shadow: 0 0 20px var(--green-glow);
       transition: var(--transition);
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 25px var(--green-glow); }
-    .btn:active{transform: translateY(0px)}
+    .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 25px var(--green-glow); }
+    .btn:disabled { cursor: not-allowed; background: var(--text-secondary); box-shadow: none; }
     .file-input-wrapper { cursor:pointer; border: 2px dashed var(--panel-border); padding: 20px; text-align:center; border-radius:12px; transition: var(--transition); }
     .file-input-wrapper:hover { border-color: var(--accent); background: var(--bg-light); }
     .file-input-wrapper input[type=file] { display: none; }
     .file-name{font-size:14px;color:var(--text-secondary);margin-top:8px;text-align:center}
     .foot{max-width:700px;margin:20px auto 60px;color:var(--text-secondary);padding:0 16px;font-size:13px;text-align:center;}
-    .warn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.4);color:var(--warn);padding:12px;border-radius:12px;margin-bottom:16px;font-size:14px;}
+    .final-step{background:rgba(122,162,255,.1);border-left: 3px solid var(--accent);color:var(--text-secondary);padding:16px;border-radius: 0 8px 8px 0;margin-bottom:16px;font-size:14px;}
+    .final-step strong { color: var(--text-primary); display: block; margin-bottom: 8px;}
+    .final-step ul { padding-left: 20px; margin: 0; }
     #groupInfoInput { display: none; }
   </style>
 </head>
@@ -199,18 +195,24 @@
              <div class="file-name" id="fileName"></div>
           </div>
           
-          <div class="form-group warn">
-            <strong>Perhatian:</strong> Anda akan diarahkan ke Gmail. Mohon <strong>lampirkan file bukti Anda secara manual</strong> di halaman Gmail sebelum mengirim.
+          <div class="form-group final-step">
+            <strong>Langkah Terakhir Anda di Gmail</strong>
+            <ul>
+                <li>Setelah tombol di bawah diklik, halaman Gmail akan terbuka.</li>
+                <li>Periksa kembali semua data yang sudah terisi otomatis.</li>
+                <li><b>PENTING:</b> Lampirkan file bukti Anda secara manual.</li>
+                <li>Klik tombol "Kirim" di halaman Gmail.</li>
+            </ul>
           </div>
           
-          <button type="submit" class="btn">Buat & Kirim via Gmail</button>
+          <button type="submit" class="btn" id="submitBtn">Buat & Kirim via Gmail</button>
         </form>
       </div>
     </section>
   </main>
   
   <footer class="foot">
-    <p>&copy; 2024 Nabila Ahmad Studio. Alat ini hanya berfungsi sebagai penghubung dan tidak berafiliasi dengan WhatsApp LLC.</p>
+    <p>&copy; 2025 Nabila Ahmad Studio. Alat ini hanya berfungsi sebagai penghubung dan tidak berafiliasi dengan WhatsApp LLC.</p>
   </footer>
 
   <script>
@@ -224,33 +226,16 @@
         uploadText: document.getElementById('uploadText'),
         groupInfoInput: document.getElementById('groupInfoInput'),
         groupInfo: document.getElementById('groupInfo'),
+        submitBtn: document.getElementById('submitBtn'),
     };
 
     const appealTemplates = {
-        temporary_ban: {
-            subject: "Banding Pemblokiran Akun Sementara", email: "support@whatsapp.com",
-            body: `Kepada Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya dengan nomor {phone_number} telah diblokir untuk sementara. Saya yakin ini adalah kesalahpahaman dan selalu berusaha mematuhi Ketentuan Layanan Anda.\n\nMohon tinjau kembali status akun saya dan pulihkan akses saya sesegera mungkin.\n\nTerima kasih.\nHormat saya,`
-        },
-        otp_reset: {
-            subject: "Masalah Menerima Kode Verifikasi (OTP)", email: "support@whatsapp.com",
-            body: `Kepada Tim Dukungan WhatsApp,\n\nSaya mengalami kesulitan masuk ke akun WhatsApp saya, nomor {phone_number}. Saya tidak menerima kode verifikasi (OTP) meski sudah mencoba beberapa kali.\n\nMohon bantuannya agar saya bisa mendapatkan kode verifikasi dan mengakses kembali akun saya.\n\nTerima kasih.\nHormat saya,`
-        },
-        mod_app: {
-            subject: "Permohonan Maaf dan Banding Akun - Penggunaan Aplikasi Tidak Resmi", email: "support@whatsapp.com",
-            body: `Kepada Tim Dukungan WhatsApp,\n\nSaya mengakui kesalahan saya karena telah menggunakan aplikasi WhatsApp yang tidak resmi (MOD) pada nomor {phone_number}, yang menyebabkan akun saya diblokir. Saya mengerti tindakan tersebut melanggar Ketentuan Layanan Anda.\n\nSaya dengan tulus meminta maaf, telah menghapus aplikasi tersebut, dan telah menginstal aplikasi WhatsApp resmi. Mohon berikan saya kesempatan kedua dengan membuka kembali blokir akun saya.\n\nTerima kasih.\nHormat saya,`
-        },
-        permanent_ban: {
-            subject: "Permohonan Peninjauan Ulang atas Pemblokiran Permanen", email: "support@whatsapp.com",
-            body: `Kepada Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya dengan nomor {phone_number} telah diblokir secara permanen. Saya telah meninjau Ketentuan Layanan dan yakin tidak melakukan pelanggaran berat. Akun ini memiliki riwayat komunikasi yang sangat penting.\n\nSaya mohon dengan sangat agar tim Anda dapat melakukan peninjauan ulang yang mendalam terhadap kasus saya.\n\nTerima kasih.\nHormat saya,`
-        },
-        business_issue: {
-            subject: "Permohonan Banding untuk Akun WhatsApp Business", email: "smb_web@support.whatsapp.com",
-            body: `Kepada Tim Dukungan WhatsApp Business,\n\nAkun WhatsApp Business kami dengan nomor {phone_number} telah diblokir. Akun ini merupakan jalur komunikasi utama kami dengan pelanggan dan pemblokiran ini berdampak signifikan pada operasional bisnis kami.\n\nKami yakin telah mematuhi semua kebijakan yang berlaku. Kami mohon agar penangguhan akun kami dapat ditinjau kembali dan diaktifkan kembali secepatnya.\n\nTerima kasih.\nHormat kami,`
-        },
-        group_ban: {
-            subject: "Permohonan Peninjauan dan Pembukaan Grup WhatsApp", email: "smb_web@support.whatsapp.com",
-            body: `Kepada Tim Dukungan WhatsApp,\n\nSaya melaporkan bahwa grup WhatsApp kami, "{group_info}", telah dinonaktifkan. Saya adalah salah satu admin di grup ini dengan nomor {phone_number}.\n\nGrup ini digunakan untuk tujuan positif dan kami selalu berusaha menjaga agar anggota mematuhi pedoman komunitas. Kami yakin penutupan ini mungkin disebabkan oleh kesalahpahaman atau laporan yang keliru.\n\nKami mohon agar tim Anda dapat meninjau kembali status grup kami dan mengaktifkannya kembali.\n\nTerima kasih atas perhatian Anda.\nHormat saya,`
-        }
+        temporary_ban: { subject: "Banding Pemblokiran Akun Sementara", email: "support@whatsapp.com", body: `Kepada Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya dengan nomor {phone_number} telah diblokir untuk sementara. Saya yakin ini adalah kesalahpahaman dan selalu berusaha mematuhi Ketentuan Layanan Anda.\n\nMohon tinjau kembali status akun saya dan pulihkan akses saya sesegera mungkin.\n\nTerima kasih.\nHormat saya,` },
+        otp_reset: { subject: "Masalah Menerima Kode Verifikasi (OTP)", email: "support@whatsapp.com", body: `Kepada Tim Dukungan WhatsApp,\n\nSaya mengalami kesulitan masuk ke akun WhatsApp saya, nomor {phone_number}. Saya tidak menerima kode verifikasi (OTP) meski sudah mencoba beberapa kali.\n\nMohon bantuannya agar saya bisa mendapatkan kode verifikasi dan mengakses kembali akun saya.\n\nTerima kasih.\nHormat saya,` },
+        mod_app: { subject: "Permohonan Maaf dan Banding Akun - Penggunaan Aplikasi Tidak Resmi", email: "support@whatsapp.com", body: `Kepada Tim Dukungan WhatsApp,\n\nSaya mengakui kesalahan saya karena telah menggunakan aplikasi WhatsApp yang tidak resmi (MOD) pada nomor {phone_number}, yang menyebabkan akun saya diblokir. Saya mengerti tindakan tersebut melanggar Ketentuan Layanan Anda.\n\nSaya dengan tulus meminta maaf, telah menghapus aplikasi tersebut, dan telah menginstal aplikasi WhatsApp resmi. Mohon berikan saya kesempatan kedua dengan membuka kembali blokir akun saya.\n\nTerima kasih.\nHormat saya,` },
+        permanent_ban: { subject: "Permohonan Peninjauan Ulang atas Pemblokiran Permanen", email: "support@whatsapp.com", body: `Kepada Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya dengan nomor {phone_number} telah diblokir secara permanen. Saya telah meninjau Ketentuan Layanan dan yakin tidak melakukan pelanggaran berat. Akun ini memiliki riwayat komunikasi yang sangat penting.\n\nSaya mohon dengan sangat agar tim Anda dapat melakukan peninjauan ulang yang mendalam terhadap kasus saya.\n\nTerima kasih.\nHormat saya,` },
+        business_issue: { subject: "Permohonan Banding untuk Akun WhatsApp Business", email: "smb_web@support.whatsapp.com", body: `Kepada Tim Dukungan WhatsApp Business,\n\nAkun WhatsApp Business kami dengan nomor {phone_number} telah diblokir. Akun ini merupakan jalur komunikasi utama kami dengan pelanggan dan pemblokiran ini berdampak signifikan pada operasional bisnis kami.\n\nKami yakin telah mematuhi semua kebijakan yang berlaku. Kami mohon agar penangguhan akun kami dapat ditinjau kembali dan diaktifkan kembali secepatnya.\n\nTerima kasih.\nHormat kami,` },
+        group_ban: { subject: "Permohonan Peninjauan dan Pembukaan Grup WhatsApp", email: "smb_web@support.whatsapp.com", body: `Kepada Tim Dukungan WhatsApp,\n\nSaya melaporkan bahwa grup WhatsApp kami, "{group_info}", telah dinonaktifkan. Saya adalah salah satu admin di grup ini dengan nomor {phone_number}.\n\nGrup ini digunakan untuk tujuan positif dan kami selalu berusaha menjaga agar anggota mematuhi pedoman komunitas. Kami yakin penutupan ini mungkin disebabkan oleh kesalahpahaman atau laporan yang keliru.\n\nKami mohon agar tim Anda dapat meninjau kembali status grup kami dan mengaktifkannya kembali.\n\nTerima kasih atas perhatian Anda.\nHormat saya,` }
     };
 
     function updateForm() {
@@ -259,14 +244,11 @@
         const phone = ELS.whatsappNumber.value || '{phone_number}';
         const groupInfo = ELS.groupInfo.value || '{group_info}';
         
-        // Show/hide group input
         ELS.groupInfoInput.style.display = type === 'group_ban' ? 'block' : 'none';
 
         if (template) {
             let body = template.body.replace('{phone_number}', phone);
-            if (type === 'group_ban') {
-                body = body.replace('{group_info}', groupInfo);
-            }
+            if (type === 'group_ban') body = body.replace('{group_info}', groupInfo);
             ELS.appealText.value = body;
         }
     }
@@ -288,13 +270,12 @@
     ELS.form.addEventListener('submit', function(e) {
       e.preventDefault();
 
+      // --- Memberikan feedback instan ---
+      ELS.submitBtn.disabled = true;
+      ELS.submitBtn.textContent = 'Mempersiapkan & Membuka Gmail...';
+
       const type = ELS.violationType.value;
       const template = appealTemplates[type];
-      
-      if(!template) {
-        alert('Silakan pilih jenis masalah terlebih dahulu.');
-        return;
-      }
       
       const recipient = template.email;
       const subject = template.subject.replace('{phone_number}', ELS.whatsappNumber.value);
@@ -302,10 +283,16 @@
 
       const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
-      // Memberi tahu pengguna tentang pop-up
-      alert('Anda akan diarahkan ke Gmail. Jika halaman tidak terbuka, mohon izinkan pop-up untuk situs ini di browser Anda.');
-      
-      window.open(gmailLink, '_blank');
+      // Delay kecil untuk memberi kesan "processing" sebelum membuka tab baru
+      setTimeout(() => {
+        window.open(gmailLink, '_blank');
+        
+        // Mengembalikan tombol ke keadaan semula setelah beberapa saat
+        setTimeout(() => {
+            ELS.submitBtn.disabled = false;
+            ELS.submitBtn.textContent = 'Buat & Kirim via Gmail';
+        }, 1500); // 1.5 detik
+      }, 500); // 0.5 detik
     });
 
     // Inisialisasi form saat halaman dimuat
