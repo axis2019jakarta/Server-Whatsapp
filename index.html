@@ -3,25 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nabila Ahmad Studio - Pusat Banding WhatsApp</title>
+  <title>Nabila Ahmad Studio - Pusat Banding & Solusi Digital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg-dark: #0F0C29;
-      --bg-mid: #302B63;
-      --bg-light: #24243E;
-      --panel: rgba(36, 36, 62, 0.6);
-      --panel-border: rgba(122, 162, 255, 0.25);
-      --text-primary: #F0F2F5;
-      --text-secondary: #A8B2D1;
-      --accent: #8A4FFF;
-      --accent-glow: rgba(138, 79, 255, 0.5);
-      --green: #25D366;
-      --green-glow: rgba(37, 211, 102, 0.4);
-      --br: 18px;
-      --shadow: 0 10px 40px rgba(0,0,0,.5);
+      --bg-dark: #0F0C29; --bg-mid: #302B63; --bg-light: #24243E;
+      --panel: rgba(36, 36, 62, 0.6); --panel-border: rgba(122, 162, 255, 0.25);
+      --text-primary: #F0F2F5; --text-secondary: #A8B2D1; --accent: #8A4FFF;
+      --accent-glow: rgba(138, 79, 255, 0.5); --green: #25D366; --green-glow: rgba(37, 211, 102, 0.4);
+      --br: 18px; --shadow: 0 10px 40px rgba(0,0,0,.5);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     *{box-sizing:border-box}
@@ -30,207 +22,274 @@
       background: linear-gradient(to right, var(--bg-dark), var(--bg-mid), var(--bg-dark));
       color: var(--text-primary);
       font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    header{
-      text-align: center;
-      padding: 40px 20px 30px;
-    }
-    h1{
-        margin:0; font-size:clamp(26px, 4vw, 40px);
-        background: -webkit-linear-gradient(45deg, #FFFFFF, #A8B2D1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 700;
-    }
-    .studio-name { font-weight: 400; font-size: 1.1rem; color: var(--text-secondary); letter-spacing: 1px; }
-    main{
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 10px 16px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 24px;
-      align-items: start;
-    }
-    .card{
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: var(--br);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      height: 100vh;
       overflow: hidden;
     }
-    .card .hd{
-      display:flex;align-items:center;gap:12px;
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--panel-border);
-      background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0));
-    }
-    .card .hd h2{margin:0;font-size:18px; font-weight: 600;}
-    .card .bd{padding: 24px;}
-    .form-group{margin-bottom:20px}
-    label{display:block;font-size:14px;color:var(--text-secondary);margin-bottom:8px; font-weight: 500;}
-    select{
-        width:100%;
-        background-color: var(--bg-light);
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23A8B2D1' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 16px center;
-        background-size: 1em;
-        -webkit-appearance:none;-moz-appearance:none;appearance:none;
-        border: 1px solid var(--panel-border);
-        border-radius: 12px;
-        padding: 12px 16px;
-        color: var(--text-primary);
-        font-family: inherit;
-        font-size: 15px;
-        transition: var(--transition);
-        cursor: pointer;
-    }
-    select:focus{
-      outline:none;
-      border-color: var(--accent);
-      box-shadow: 0 0 15px var(--accent-glow);
-    }
-    textarea{
-      width:100%;
-      background: var(--bg-light);
-      border: 1px solid var(--panel-border);
-      border-radius: 12px;
-      padding: 16px;
-      color: var(--text-secondary);
-      font-family: 'Menlo', 'Consolas', monospace;
-      font-size: 14px;
-      resize: none;
-      height: 300px;
-    }
-    .copy-btn{
-      appearance:none; border:0; cursor:pointer; width:100%; padding:14px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #6a11cb);
-      color:white; font-weight:600; font-size:16px;
-      box-shadow: 0 0 20px var(--accent-glow);
-      transition: var(--transition);
+    /* --- Sidebar Navigation --- */
+    .sidebar {
+      width: 260px;
+      background: var(--panel);
+      border-right: 1px solid var(--panel-border);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      padding: 24px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      flex-direction: column;
+      flex-shrink: 0;
     }
+    .sidebar-header { text-align: center; margin-bottom: 40px; }
+    .sidebar-header h1 { font-size: 22px; margin-bottom: 4px; color: var(--text-primary); font-weight: 600; }
+    .sidebar-header p { font-size: 13px; color: var(--accent); margin: 0; }
+    .nav-menu { list-style: none; padding: 0; margin: 0; }
+    .nav-menu li a {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: var(--transition);
+      margin-bottom: 8px;
+    }
+    .nav-menu li a:hover { background: rgba(138, 79, 255, 0.1); color: var(--text-primary); }
+    .nav-menu li a.active { background: var(--accent); color: white; font-weight: 600; box-shadow: 0 0 20px var(--accent-glow); }
+    .nav-menu li a svg { width: 20px; height: 20px; }
+    .sidebar-footer { margin-top: auto; text-align: center; font-size: 12px; color: var(--text-secondary); opacity: 0.6; }
+
+    /* --- Main Content --- */
+    .main-container { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .top-bar {
+      background: rgba(0,0,0,0.2);
+      padding: 10px 24px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .top-bar-text { display: inline-block; padding-left: 100%; animation: marquee 35s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-150%); } }
+    .content-area { flex-grow: 1; overflow-y: auto; padding: 24px; }
+    .page { display: none; }
+    .page.active { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- Shared Styles for Content --- */
+    .content-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; align-items: start; }
+    .card {
+      background: var(--panel); border: 1px solid var(--panel-border);
+      border-radius: var(--br); box-shadow: var(--shadow);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      overflow: hidden; margin-bottom: 24px;
+    }
+    .card .hd { display:flex;align-items:center;gap:12px; padding: 20px 24px; border-bottom: 1px solid var(--panel-border); background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0)); }
+    .card .hd h2 { margin:0;font-size:18px; font-weight: 600; }
+    .card .bd { padding: 24px; }
+    
+    /* --- Specific Page Styles --- */
+    /* Page: Banding */
+    select, textarea {
+      width:100%; background-color: var(--bg-light); border: 1px solid var(--panel-border);
+      border-radius: 12px; padding: 12px 16px; color: var(--text-primary);
+      font-family: inherit; font-size: 15px; transition: var(--transition);
+    }
+    textarea { height: 300px; font-family: 'Menlo', 'Consolas', monospace; color: var(--text-secondary); resize: none; }
+    .btn { appearance:none; border:0; cursor:pointer; width:100%; padding:14px; border-radius: 12px; color:white; font-weight:600; font-size:16px; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .copy-btn { background: linear-gradient(135deg, var(--accent), #6a11cb); box-shadow: 0 0 20px var(--accent-glow); }
     .copy-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 25px var(--accent-glow); }
     .copy-btn.copied { background: linear-gradient(135deg, var(--green), #1b8b5e); }
-    .copy-btn svg { width: 18px; height: 18px; }
-
-    .action-btn {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      text-decoration: none;
-      width:100%; padding: 18px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--green), #128C7E);
-      color:white; font-weight:600; font-size: 17px;
-      box-shadow: 0 0 20px var(--green-glow);
-      transition: var(--transition);
-    }
+    .action-btn { background: linear-gradient(135deg, var(--green), #128C7E); box-shadow: 0 0 20px var(--green-glow); padding: 18px; font-size: 17px; }
     .action-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 25px var(--green-glow); }
-    .action-btn svg { width: 22px; height: 22px; }
-
     .instructions { list-style: none; padding: 0; margin-top: 24px; }
     .instructions li { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; color: var(--text-secondary); }
-    .instructions .icon {
-      flex-shrink: 0;
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      background: var(--bg-light);
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--panel-border);
-    }
-    .instructions .icon svg { width: 18px; height: 18px; color: var(--accent); }
+    .instructions .icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: var(--bg-light); display: grid; place-items: center; border: 1px solid var(--panel-border); }
     
-    .footer { text-align:center; margin-top: 40px; color: var(--text-secondary); font-size: 14px;}
-    
-    @media (max-width: 950px) {
-        main { grid-template-columns: 1fr; }
-        textarea { height: 250px; }
+    /* Page: Layanan */
+    .pricelist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .price-card { background: var(--bg-light); border-radius: 16px; border: 1px solid var(--panel-border); padding: 24px; text-align: center; transition: var(--transition); }
+    .price-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .price-card .icon { margin-bottom: 16px; color: var(--accent); }
+    .price-card h3 { margin: 0 0 8px; font-size: 18px; }
+    .price-card .price { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+    .price-card .price span { font-size: 16px; font-weight: 400; color: var(--text-secondary); }
+    .payment-info { margin-top: 30px; text-align: center; font-size: 16px; }
+    .payment-info img { height: 25px; vertical-align: middle; margin-right: 10px; }
+
+    /* Page: Tentang */
+    .about-content p { color: var(--text-secondary); margin-bottom: 1.5em; line-height: 1.8; }
+    .about-content h3 { color: var(--accent); font-weight: 600; margin-top: 2em; margin-bottom: 1em; border-left: 3px solid var(--accent); padding-left: 12px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      body { flex-direction: column; height: auto; }
+      .sidebar { width: 100%; height: auto; flex-direction: row; justify-content: center; align-items: center; padding: 8px; border-right: 0; border-bottom: 1px solid var(--panel-border);}
+      .sidebar-header { display: none; }
+      .nav-menu { display: flex; gap: 8px; }
+      .nav-menu li a { padding: 8px 14px; font-size: 14px; }
+      .sidebar-footer { display: none; }
+      .content-area { overflow-y: visible; }
     }
+    @media (max-width: 768px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .nav-menu li a span { display: none; } /* Hide text on mobile nav */
+      .nav-menu li a { padding: 10px; }
+    }
+
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Nabila Ahmad Studio</h1>
-    <p class="studio-name">Pusat Bantuan Banding WhatsApp</p>
-  </header>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>Nabila Ahmad</h1>
+      <p>Studio Digital</p>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#page-banding" class="nav-link active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <span>Pusat Banding</span>
+      </a></li>
+      <li><a href="#page-layanan" class="nav-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 18.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h4l4 4v9.5z"></path><path d="M14 2v4h4"></path><path d="M9 13h2"></path><path d="M9 16h4"></path></svg>
+        <span>Layanan & Jasa</span>
+      </a></li>
+      <li><a href="#page-tentang" class="nav-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7"></path></svg>
+        <span>Tentang Developer</span>
+      </a></li>
+    </ul>
+    <div class="sidebar-footer">
+      &copy; 2025 Nabila Ahmad Studio
+    </div>
+  </aside>
 
-  <main>
-    <div class="controls-column">
-        <div class="card">
-            <div class="hd"><h2>Langkah 1: Siapkan Teks Banding Anda</h2></div>
-            <div class="bd">
-                <div class="form-group">
-                    <label for="appealType">Pilih Jenis Masalah Anda</label>
-                    <select id="appealType">
-                        <option value="temporary_ban">Unbanned Akun Sementara</option>
-                        <option value="permanent_ban">Unbanned Akun Permanen</option>
-                        <option value="mod_app">Aplikasi Tidak Resmi (MOD)</option>
-                        <option value="otp_reset">Masalah Kode Verifikasi (OTP)</option>
-                        <option value="business_issue">Akun WhatsApp Business</option>
-                        <option value="group_ban">Grup Dinonaktifkan</option>
-                    </select>
+  <!-- MAIN CONTENT -->
+  <div class="main-container">
+    <div class="top-bar">
+        <div class="top-bar-text">Selamat Datang di Pusat Bantuan Nabila Ahmad Studio! Kami menyediakan alat bantu banding WhatsApp dan solusi digital profesional untuk kebutuhan Anda. Hubungi admin untuk konsultasi gratis.</div>
+    </div>
+    <main class="content-area">
+      <!-- Page 1: Pusat Banding -->
+      <section id="page-banding" class="page active">
+        <div class="content-grid">
+            <div class="card">
+                <div class="hd"><h2>Langkah 1: Siapkan Teks Banding Anda</h2></div>
+                <div class="bd">
+                    <div class="form-group"><label for="appealType">Pilih Jenis Masalah Anda</label><select id="appealType"><option value="temporary_ban">Unbanned Akun Sementara</option><option value="permanent_ban">Unbanned Akun Permanen</option><option value="mod_app">Aplikasi Tidak Resmi (MOD)</option><option value="otp_reset">Masalah Kode Verifikasi (OTP)</option><option value="business_issue">Akun WhatsApp Business</option><option value="group_ban">Grup Dinonaktifkan</option></select></div>
+                    <div class="form-group"><label for="language">Pilih Bahasa Teks</label><select id="language"><option value="id">Bahasa Indonesia</option><option value="en">English (Bahasa Inggris)</option></select></div>
+                    <div class="form-group"><label>Teks Permohonan Siap Pakai</label><textarea id="appealText" readonly></textarea></div>
+                    <button class="btn copy-btn" id="copyBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Salin Teks</span></button>
                 </div>
-                <div class="form-group">
-                    <label for="language">Pilih Bahasa Teks</label>
-                    <select id="language">
-                        <option value="id">Bahasa Indonesia</option>
-                        <option value="en">English (Bahasa Inggris)</option>
-                    </select>
+            </div>
+            <div class="card">
+                <div class="hd"><h2>Langkah 2: Kirim Permohonan Anda</h2></div>
+                <div class="bd">
+                    <a href="https://www.whatsapp.com/contact/?subject=messenger" target="_blank" rel="noopener noreferrer" class="btn action-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Buka Formulir Resmi</span></a>
+                    <ul class="instructions">
+                        <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div><span>Salin teks dari Langkah 1.</span></li>
+                        <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></div><span>Klik tombol "Buka Formulir Resmi" di atas.</span></li>
+                        <li><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></div><span>Isi data Anda & tempel teks ke kolom pesan.</span></li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label>Teks Permohonan Siap Pakai</label>
-                    <textarea id="appealText" readonly></textarea>
-                </div>
-                <button class="copy-btn" id="copyBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    <span>Salin Teks</span>
-                </button>
             </div>
         </div>
-    </div>
-    
-    <div class="action-column">
+      </section>
+
+      <!-- Page 2: Layanan & Jasa -->
+      <section id="page-layanan" class="page">
         <div class="card">
-            <div class="hd"><h2>Langkah 2: Kirim Permohonan Anda</h2></div>
+            <div class="hd"><h2>Layanan & Jasa Profesional</h2></div>
             <div class="bd">
-                <a href="https://www.whatsapp.com/contact/?subject=messenger" target="_blank" rel="noopener noreferrer" class="action-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    <span>Buka Formulir Resmi</span>
-                </a>
-                <ul class="instructions">
-                    <li>
-                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div>
-                        <span>Salin teks dari Langkah 1.</span>
-                    </li>
-                    <li>
-                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></div>
-                        <span>Klik tombol "Buka Formulir Resmi" di atas.</span>
-                    </li>
-                    <li>
-                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></div>
-                        <span>Isi data Anda & tempel teks ke kolom pesan.</span>
-                    </li>
-                </ul>
+                <div class="pricelist-grid">
+                    <div class="price-card">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"></path><path d="M12 18_4-4-4 4"></path><path d="m6 14 4 4"></path><path d="M10 10 6 6l4-4"></path><path d="M18 14_4-4 4 4"></path><path d="M14 10l4-4-4-4"></path></svg></div>
+                        <h3>Tools AI</h3>
+                        <div class="price">Rp 150.000</div>
+                        <a href="https://api.whatsapp.com/send?phone=6285810526151&text=Halo%20Nabila%20Ahmad%20Studio,%20saya%20tertarik%20untuk%20memesan%20layanan%20Tools%20AI%20(Rp%20150.000).%20Mohon%20informasi%20selanjutnya." target="_blank" class="btn copy-btn">Pesan Sekarang</a>
+                    </div>
+                    <div class="price-card">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a2 2 0 1 0-4 0v-2a2 2 0 1 0 4 0v2z"></path><path d="M14 14a2 2 0 1 0-4 0v-2a2 2 0 1 0 4 0v2z"></path><path d="M18 14a2 2 0 1 0-4 0v-2a2 2 0 1 0 4 0v2z"></path><path d="M6 14a2 2 0 1 0-4 0v-2a2 2 0 1 0 4 0v2z"></path><path d="M10 10a2 2 0 1 0-4 0V8a2 2 0 1 0 4 0v2z"></path><path d="M14 10a2 2 0 1 0-4 0V8a2 2 0 1 0 4 0v2z"></path><path d="M18 10a2 2 0 1 0-4 0V8a2 2 0 1 0 4 0v2z"></path><path d="M6 10a2 2 0 1 0-4 0V8a2 2 0 1 0 4 0v2z"></path><path d="M10 6a2 2 0 1 0-4 0V4a2 2 0 1 0 4 0v2z"></path><path d="M14 6a2 2 0 1 0-4 0V4a2 2 0 1 0 4 0v2z"></path><path d="M18 6a2 2 0 1 0-4 0V4a2 2 0 1 0 4 0v2z"></path><path d="M6 6a2 2 0 1 0-4 0V4a2 2 0 1 0 4 0v2z"></path></svg></div>
+                        <h3>Tools Website</h3>
+                        <div class="price">Rp 150.000</div>
+                        <a href="https://api.whatsapp.com/send?phone=6285810526151&text=Halo%20Nabila%20Ahmad%20Studio,%20saya%20tertarik%20untuk%20memesan%20layanan%20Tools%20Website%20(Rp%20150.000).%20Mohon%20informasi%20selanjutnya." target="_blank" class="btn copy-btn">Pesan Sekarang</a>
+                    </div>
+                    <div class="price-card">
+                         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div>
+                        <h3>Website Toko</h3>
+                        <div class="price">Rp 250.000</div>
+                        <a href="https://api.whatsapp.com/send?phone=6285810526151&text=Halo%20Nabila%20Ahmad%20Studio,%20saya%20tertarik%20untuk%20memesan%20layanan%20Website%20Toko%20(Rp%20250.000).%20Mohon%20informasi%20selanjutnya." target="_blank" class="btn copy-btn">Pesan Sekarang</a>
+                    </div>
+                    <div class="price-card">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l3 3-3 3"></path><path d="M13 15h3"></path></svg></div>
+                        <h3>Script Termux</h3>
+                        <div class="price">Rp 100.000</div>
+                        <a href="https://api.whatsapp.com/send?phone=6285810526151&text=Halo%20Nabila%20Ahmad%20Studio,%20saya%20tertarik%20untuk%20memesan%20layanan%20Script%20Termux%20(Rp%20100.000).%20Mohon%20informasi%20selanjutnya." target="_blank" class="btn copy-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <div class="payment-info card">
+                    <p><strong>Kontak & Pembayaran</strong></p>
+                    <a href="https://api.whatsapp.com/send?phone=6285810526151" target="_blank" class="btn action-btn" style="margin-bottom: 12px;">Admin 1: 0858-1052-6151</a>
+                    <a href="https://api.whatsapp.com/send?phone=62895340205302" target="_blank" class="btn action-btn" style="background: var(--bg-light); margin-bottom: 20px;">Admin 2: 0895-3402-05302</a>
+                    <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/2560px-Gopay_logo.svg.png" alt="Gopay"> <strong>0895-3402-05302</strong></p>
+                </div>
             </div>
         </div>
-    </div>
-  </main>
+      </section>
 
-  <footer class="footer">
-    <p>&copy; 2025 Nabila Ahmad Studio. Ini adalah alat bantu dan tidak berafiliasi resmi dengan WhatsApp LLC.</p>
-  </footer>
+      <!-- Page 3: Tentang Developer -->
+      <section id="page-tentang" class="page">
+        <div class="card">
+            <div class="hd"><h2>Tentang Nabila Ahmad Studio</h2></div>
+            <div class="bd">
+                <div class="about-content">
+                    <h3>Visi Kami: Memberdayakan Ide Melalui Teknologi</h3>
+                    <p>Nabila Ahmad Studio bukan sekadar penyedia jasa digital; kami adalah mitra inovasi Anda. Didirikan dengan semangat untuk menjembatani ide-ide cemerlang dengan eksekusi teknologi yang presisi, kami berdedikasi untuk menciptakan solusi digital yang tidak hanya berfungsi dengan baik, tetapi juga memberikan pengalaman pengguna yang luar biasa. Visi kami adalah menjadi akselerator bagi individu dan bisnis yang ingin bertransformasi secara digital.</p>
+                    
+                    <h3>Siapa di Balik Layar?</h3>
+                    <p>Kami adalah tim developer, desainer, dan ahli strategi digital yang dinamis dan bersemangat. Dengan keahlian mendalam dalam pengembangan web modern, kecerdasan buatan (AI), dan otomatisasi, kami menggabungkan kreativitas dengan logika pemrograman yang solid. Setiap baris kode yang kami tulis dan setiap piksel yang kami desain didasari oleh riset, tren terkini, dan yang terpenting, pemahaman mendalam akan tujuan klien kami.</p>
+
+                    <h3>Teknologi yang Kami Kuasai</h3>
+                    <p>Di era digital yang serba cepat, kami berkomitmen untuk selalu berada di garis depan teknologi. Kami memanfaatkan berbagai tools dan bahasa pemrograman modern seperti JavaScript (React, Node.js), Python untuk AI dan scripting, serta HTML5 & CSS3 untuk menciptakan website yang cepat, aman, dan responsif. Baik itu membangun website e-commerce yang kompleks, merancang tools AI kustom, atau membuat script otomatisasi untuk Termux, kami memastikan setiap proyek dibangun di atas fondasi teknologi yang kokoh dan skalabel.</p>
+                    
+                    <h3>Mengapa Memilih Kami?</h3>
+                    <p><strong>1. Pendekatan Kolaboratif:</strong> Kami percaya bahwa proyek terbaik lahir dari komunikasi dan kolaborasi yang erat. Kami mendengarkan ide Anda, memahami kebutuhan Anda, dan bekerja bersama Anda di setiap langkahnya, dari konsep hingga peluncuran.<br><br><strong>2. Kualitas Tanpa Kompromi:</strong> Bagi kami, kualitas adalah segalanya. Kami melakukan pengujian menyeluruh untuk memastikan setiap produk yang kami rilis bebas dari bug, aman, dan berkinerja optimal di berbagai perangkat.<br><br><strong>3. Harga Kompetitif:</strong> Kami percaya bahwa solusi digital berkualitas tinggi harus dapat diakses oleh semua kalangan. Kami menawarkan harga yang sangat kompetitif tanpa mengorbankan kualitas hasil akhir.<br><br><strong>4. Dukungan Purna Jual:</strong> Hubungan kami dengan klien tidak berakhir setelah proyek selesai. Kami menyediakan dukungan untuk memastikan solusi digital Anda terus berjalan lancar.</p>
+                    <p>Apakah Anda siap untuk mewujudkan proyek digital Anda berikutnya? Mari berdiskusi. Hubungi kami melalui WhatsApp dan biarkan kami membantu Anda mengubah ide menjadi kenyataan.</p>
+                </div>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
 
   <script>
+    // --- Page Navigation ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+
+            // Update active link
+            navLinks.forEach(nav => nav.classList.remove('active'));
+            link.classList.add('active');
+
+            // Update active page
+            pages.forEach(page => {
+                if ('#' + page.id === targetId) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+        });
+    });
+
+
+    // --- Appeal Page Logic ---
     const ELS = {
         appealType: document.getElementById('appealType'),
         language: document.getElementById('language'),
@@ -240,30 +299,12 @@
     };
 
     const appealTemplates = {
-        temporary_ban: {
-            id: "Dengan hormat Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya (+62 ganti dengan nomor Anda) baru-baru ini ditangguhkan untuk sementara. Saya yakin ini adalah kesalahpahaman karena saya selalu mematuhi Ketentuan Layanan.\n\nAkun ini sangat vital untuk komunikasi harian saya. Mohon untuk meninjau kembali kasus saya dan memulihkan akses akun saya secepatnya.\n\nTerima kasih atas perhatian Anda.",
-            en: "Dear WhatsApp Support Team,\n\nMy WhatsApp account (+62 replace with your number) was recently suspended temporarily. I believe this is a misunderstanding, as I always strive to adhere to the Terms of Service.\n\nThis account is vital for my daily communications. I kindly request that you review my case and restore my account access at your earliest convenience.\n\nThank you for your attention to this matter."
-        },
-        permanent_ban: {
-            id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya menulis untuk mengajukan banding atas pemblokiran permanen pada akun WhatsApp saya (+62 ganti dengan nomor Anda). Saya sangat terkejut dengan keputusan ini karena saya yakin tidak pernah melakukan pelanggaran berat terhadap kebijakan Anda.\n\nAkun ini menyimpan banyak riwayat penting. Saya dengan hormat memohon peninjauan ulang yang mendalam atas kasus saya. Saya bersedia memberikan informasi apa pun yang diperlukan.\n\nSaya berharap ada kekeliruan dan akun saya dapat dipulihkan. Terima kasih.",
-            en: "Dear WhatsApp Support Team,\n\nI am writing to appeal the permanent ban on my WhatsApp account (+62 replace with your number). I am very concerned by this decision as I am confident I have not committed any severe violations of your policies.\n\nThis account holds significant and important history for me. I respectfully request a thorough review of my case. I am willing to provide any information needed.\n\nI am hopeful this was an error and my account can be restored. Thank you."
-        },
-        mod_app: {
-            id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya menulis surat ini untuk mengakui kesalahan saya karena telah menggunakan aplikasi WhatsApp yang tidak resmi, yang menyebabkan akun saya (+62 ganti dengan nomor Anda) diblokir. Saya sekarang sepenuhnya mengerti bahwa tindakan tersebut melanggar Ketentuan Layanan dan berisiko.\n\nSaya dengan tulus meminta maaf. Saya telah menghapus aplikasi tidak resmi tersebut dan telah menginstal aplikasi WhatsApp resmi. Mohon berikan saya kesempatan kedua untuk menggunakan layanan Anda dengan benar. Terima kasih atas pengertian Anda.",
-            en: "Dear WhatsApp Support Team,\n\nI am writing to acknowledge my mistake in using an unofficial WhatsApp application, which led to the suspension of my account (+62 replace with your number). I now fully understand this was a violation of the Terms of Service and posed a security risk.\n\nI sincerely apologize. I have since uninstalled the unofficial app and have installed the official WhatsApp application. I kindly ask for a second chance to use your service correctly. Thank you for your understanding."
-        },
-        otp_reset: {
-            id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya mengalami kendala saat mencoba masuk ke akun WhatsApp saya (+62 ganti dengan nomor Anda). Saya tidak menerima kode verifikasi (OTP) melalui SMS meskipun telah memintanya berkali-kali dan memastikan koneksi jaringan saya baik.\n\nMohon bantuannya untuk memeriksa dan menyelesaikan masalah ini agar saya dapat menerima kode verifikasi dan mengakses kembali akun saya. Terima kasih.",
-            en: "Dear WhatsApp Support Team,\n\nI am facing an issue logging into my WhatsApp account (+62 replace with your number). I am not receiving the verification code (OTP) via SMS, despite multiple attempts and ensuring my network connection is stable.\n\nPlease investigate this issue so I can receive the verification code and regain access to my account. Thank you for your assistance."
-        },
-        business_issue: {
-            id: "Dengan hormat Tim Dukungan WhatsApp Business,\n\nAkun WhatsApp Business kami (+62 ganti dengan nomor Anda) telah dinonaktifkan. Akun ini adalah saluran komunikasi utama kami dengan pelanggan, dan penangguhan ini sangat berdampak pada bisnis kami.\n\nKami yakin telah mematuhi semua Kebijakan Bisnis dan Perdagangan. Jika ada pelanggaran yang tidak kami sadari, kami mohon petunjuk untuk memperbaikinya. Kami memohon peninjauan kembali dan pengaktifan ulang akun kami.\n\nTerima kasih.",
-            en: "Dear WhatsApp Business Support Team,\n\nOur WhatsApp Business account (+62 replace with your number) has been disabled. This account is our primary communication channel with our customers, and this suspension is significantly impacting our operations.\n\nWe believe we have been compliant with all Business and Commerce Policies. If we have inadvertently violated a policy, we ask for guidance to correct it. We kindly request a review and reinstatement of our account.\n\nThank you."
-        },
-        group_ban: {
-            id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya melaporkan bahwa grup WhatsApp kami bernama \"[Ganti dengan Nama Grup]\" telah dinonaktifkan. Saya adalah admin grup dengan nomor (+62 ganti dengan nomor Anda).\n\nGrup ini kami gunakan untuk koordinasi komunitas yang positif. Kami yakin penonaktifan ini terjadi karena kesalahpahaman. Mohon untuk meninjau kembali status grup kami dan mengaktifkannya kembali.\n\nTerima kasih banyak.",
-            en: "Dear WhatsApp Support Team,\n\nI am reporting that our WhatsApp group named \"[Replace with Group Name]\" has been disabled. I am an admin in the group with the number (+62 replace with your number).\n\nThis group is used for positive community coordination. We believe its deactivation was a misunderstanding. We kindly request that you review our group's status and reactivate it.\n\nThank you very much."
-        }
+        temporary_ban: {id: "Dengan hormat Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya (+62 ganti dengan nomor Anda) baru-baru ini ditangguhkan untuk sementara. Saya yakin ini adalah kesalahpahaman karena saya selalu mematuhi Ketentuan Layanan.\n\nAkun ini sangat vital untuk komunikasi harian saya. Mohon untuk meninjau kembali kasus saya dan memulihkan akses akun saya secepatnya.\n\nTerima kasih atas perhatian Anda.", en: "Dear WhatsApp Support Team,\n\nMy WhatsApp account (+62 replace with your number) was recently suspended temporarily. I believe this is a misunderstanding, as I always strive to adhere to the Terms of Service.\n\nThis account is vital for my daily communications. I kindly request that you review my case and restore my account access at your earliest convenience.\n\nThank you for your attention to this matter."},
+        permanent_ban: {id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya menulis untuk mengajukan banding atas pemblokiran permanen pada akun WhatsApp saya (+62 ganti dengan nomor Anda). Saya sangat terkejut dengan keputusan ini karena saya yakin tidak pernah melakukan pelanggaran berat terhadap kebijakan Anda.\n\nAkun ini menyimpan banyak riwayat penting. Saya dengan hormat memohon peninjauan ulang yang mendalam atas kasus saya. Saya bersedia memberikan informasi apa pun yang diperlukan.\n\nSaya berharap ada kekeliruan dan akun saya dapat dipulihkan. Terima kasih.", en: "Dear WhatsApp Support Team,\n\nI am writing to appeal the permanent ban on my WhatsApp account (+62 replace with your number). I am very concerned by this decision as I am confident I have not committed any severe violations of your policies.\n\nThis account holds significant and important history for me. I respectfully request a thorough review of my case. I am willing to provide any information needed.\n\nI am hopeful this was an error and my account can be restored. Thank you."},
+        mod_app: {id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya menulis surat ini untuk mengakui kesalahan saya karena telah menggunakan aplikasi WhatsApp yang tidak resmi, yang menyebabkan akun saya (+62 ganti dengan nomor Anda) diblokir. Saya sekarang sepenuhnya mengerti bahwa tindakan tersebut melanggar Ketentuan Layanan dan berisiko.\n\nSaya dengan tulus meminta maaf. Saya telah menghapus aplikasi tidak resmi tersebut dan telah menginstal aplikasi WhatsApp resmi. Mohon berikan saya kesempatan kedua untuk menggunakan layanan Anda dengan benar. Terima kasih atas pengertian Anda.", en: "Dear WhatsApp Support Team,\n\nI am writing to acknowledge my mistake in using an unofficial WhatsApp application, which led to the suspension of my account (+62 replace with your number). I now fully understand this was a violation of the Terms of Service and posed a security risk.\n\nI sincerely apologize. I have since uninstalled the unofficial app and have installed the official WhatsApp application. I kindly ask for a second chance to use your service correctly. Thank you for your understanding."},
+        otp_reset: {id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya mengalami kendala saat mencoba masuk ke akun WhatsApp saya (+62 ganti dengan nomor Anda). Saya tidak menerima kode verifikasi (OTP) melalui SMS meskipun telah memintanya berkali-kali dan memastikan koneksi jaringan saya baik.\n\nMohon bantuannya untuk memeriksa dan menyelesaikan masalah ini agar saya dapat menerima kode verifikasi dan mengakses kembali akun saya. Terima kasih.", en: "Dear WhatsApp Support Team,\n\nI am facing an issue logging into my WhatsApp account (+62 replace with your number). I am not receiving the verification code (OTP) via SMS, despite multiple attempts and ensuring my network connection is stable.\n\nPlease investigate this issue so I can receive the verification code and regain access to my account. Thank you for your assistance."},
+        business_issue: {id: "Dengan hormat Tim Dukungan WhatsApp Business,\n\nAkun WhatsApp Business kami (+62 ganti dengan nomor Anda) telah dinonaktifkan. Akun ini adalah saluran komunikasi utama kami dengan pelanggan, dan penangguhan ini sangat berdampak pada bisnis kami.\n\nKami yakin telah mematuhi semua Kebijakan Bisnis dan Perdagangan. Jika ada pelanggaran yang tidak kami sadari, kami mohon petunjuk untuk memperbaikinya. Kami memohon peninjauan kembali dan pengaktifan ulang akun kami.\n\nTerima kasih.", en: "Dear WhatsApp Business Support Team,\n\nOur WhatsApp Business account (+62 replace with your number) has been disabled. This account is our primary communication channel with our customers, and this suspension is significantly impacting our operations.\n\nWe believe we have been compliant with all Business and Commerce Policies. If we have inadvertently violated a policy, we ask for guidance to correct it. We kindly request a review and reinstatement of our account.\n\nThank you."},
+        group_ban: {id: "Dengan hormat Tim Dukungan WhatsApp,\n\nSaya melaporkan bahwa grup WhatsApp kami bernama \"[Ganti dengan Nama Grup]\" telah dinonaktifkan. Saya adalah admin grup dengan nomor (+62 ganti dengan nomor Anda).\n\nGrup ini kami gunakan untuk koordinasi komunitas yang positif. Kami yakin penonaktifan ini terjadi karena kesalahpahaman. Mohon untuk meninjau kembali status grup kami dan mengaktifkannya kembali.\n\nTerima kasih banyak.", en: "Dear WhatsApp Support Team,\n\nI am reporting that our WhatsApp group named \"[Replace with Group Name]\" has been disabled. I am an admin in the group with the number (+62 replace with your number).\n\nThis group is used for positive community coordination. We believe its deactivation was a misunderstanding. We kindly request that you review our group's status and reactivate it.\n\nThank you very much."}
     };
 
     function updateTemplate() {
@@ -273,22 +314,15 @@
     }
 
     function copyToClipboard() {
-        if (!navigator.clipboard) {
-            alert('Browser Anda tidak mendukung fitur salin otomatis.');
-            return;
-        }
+        if (!navigator.clipboard) { alert('Browser Anda tidak mendukung fitur salin otomatis.'); return; }
         navigator.clipboard.writeText(ELS.appealText.value).then(() => {
             ELS.copyBtn.classList.add('copied');
             ELS.copyBtnText.textContent = 'Teks Disalin!';
-            
             setTimeout(() => {
                 ELS.copyBtn.classList.remove('copied');
                 ELS.copyBtnText.textContent = 'Salin Teks';
             }, 2000);
-        }).catch(err => {
-            console.error('Gagal menyalin teks: ', err);
-            alert('Gagal menyalin teks.');
-        });
+        }).catch(err => { console.error('Gagal menyalin teks: ', err); alert('Gagal menyalin teks.'); });
     }
 
     ELS.appealType.addEventListener('change', updateTemplate);
