@@ -1,10 +1,9 @@
 <!doctype html>
-
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RLS Appeal Simulator – Mengapa “Sekali Enter” Bisa Tembus?</title>
+  <title>Formulir Banding Akun WhatsApp</title>
   <style>
     :root{
       --bg:#0b1020;--panel:#121931;--muted:#95a1c3;--text:#e7edff;--accent:#7aa2ff;--good:#34d399;--bad:#ef4444;--warn:#f59e0b;
@@ -12,262 +11,131 @@
     }
     *{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 700px at 20% -10%,#1a2145 0,#0b1020 60%);color:var(--text);font:500 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial}
     header{padding:28px 20px 10px;display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap}
-    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#5b76ff,#9bb3ff);display:grid;place-items:center;box-shadow:var(--shadow)}
-    .logo span{font-weight:800;color:#0b1020}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#25D366,#128C7E);display:grid;place-items:center;box-shadow:var(--shadow)}
+    .logo svg{width:24px;height:24px;fill:white}
     h1{margin:0;font-size:clamp(20px,4vw,28px);letter-spacing:.2px}
-    .sub{color:var(--muted);text-align:center;margin:6px 0 20px}
-    main{max-width:1100px;margin:0 auto;padding:10px 16px 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .sub{color:var(--muted);text-align:center;margin:6px 0 20px;max-width:600px;margin-left:auto;margin-right:auto;padding:0 16px;}
+    main{max-width:700px;margin:0 auto;padding:10px 16px 60px;}
     .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:var(--br);box-shadow:var(--shadow)}
     .card .hd{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
     .card .hd h2{margin:0;font-size:18px}
     .card .bd{padding:16px 18px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-group{margin-bottom:16px}
     label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type=range]{width:100%}
-    .value{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}
-    .row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-bottom:10px}
-    .pill{display:inline-flex;gap:8px;align-items:center;background:#0c1430;border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
-    .btn{appearance:none;border:0;cursor:pointer;padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#6c8bff,#9ab6ff);color:#0b1020;font-weight:800;box-shadow:var(--shadow)}
+    input[type=text],input[type=email],textarea{width:100%;background:#0c1430;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px;color:var(--text);font-family:inherit;font-size:15px;}
+    textarea{min-height:150px;resize:vertical}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+    .btn{appearance:none;border:0;cursor:pointer;width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#25D366,#128C7E);color:white;font-weight:800;font-size:16px;box-shadow:var(--shadow)}
     .btn:active{transform:translateY(1px)}
-    .stack{display:flex;flex-wrap:wrap;gap:8px}
-    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .kpi .it{background:#0c1430;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
-    .kpi .big{font-size:22px;font-weight:800}
-    .kpi .ok{color:var(--good)}.kpi .ng{color:var(--bad)}
-    .log{max-height:260px;overflow:auto;background:#0c1430;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
-    .muted{color:var(--muted)}
-    .flow{height:340px;background:#0c1430;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px}
-    .foot{max-width:1100px;margin:20px auto 60px;color:var(--muted);padding:0 16px}
-    .badge{background:#12214a;border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:10px}
-    .warn{color:var(--warn)}
-    @media (max-width:900px){main{grid-template-columns:1fr;}}
+    .file-input-wrapper {position: relative;overflow: hidden;display: inline-block;width:100%;cursor:pointer;border-radius:12px;padding:12px 14px;text-align:center;background:#0c1430;border:1px dashed rgba(255,255,255,.3);}
+    .file-input-wrapper:hover{background:#121931}
+    .file-input-wrapper input[type=file]{font-size:100px;position:absolute;left:0;top:0;opacity:0;cursor:pointer}
+    .file-name{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
+    .foot{max-width:700px;margin:20px auto 60px;color:var(--muted);padding:0 16px;font-size:13px;text-align:center;}
   </style>
 </head>
 <body>
   <header>
-    <div class="logo"><span>RLS</span></div>
-    <h1>RLS Appeal Simulator</h1>
-  </header>
-  <div class="sub">Simulasi bagaimana sebuah banding (appeal) bisa “tembus” lewat <span class="badge">Rule‑Based Logic System</span> tanpa menyusupi backend WhatsApp. <br/>Ini <b>bukan</b> alat unban — hanya visualisasi probabilistik untuk belajar.</div>  <main>
-    <!-- Left column: Controls & KPIs -->
-    <section class="card">
-      <div class="hd"><h2>Parameter Eksperimen</h2></div>
-      <div class="bd">
-        <div class="grid">
-          <div>
-            <div class="row">
-              <label>Jumlah Attempt Paralel</label>
-              <div class="pill"><span id="attemptsV" class="value">50</span> attempt</div>
-            </div>
-            <input id="attempts" type="range" min="1" max="200" value="50" />
-          </div>
-          <div>
-            <div class="row">
-              <label>Skor Wording Appeal</label>
-              <div class="pill"><span id="wordV" class="value">0.60</span></div>
-            </div>
-            <input id="word" type="range" min="0" max="1" step="0.01" value="0.60" />
-          </div>
-          <div>
-            <div class="row">
-              <label>Diversitas IP (proxy/residential)</label>
-              <div class="pill"><span id="ipV" class="value">0.50</span></div>
-            </div>
-            <input id="ip" type="range" min="0" max="1" step="0.01" value="0.50" />
-          </div>
-          <div>
-            <div class="row">
-              <label>Kepercayaan Device (fingerprint tampak normal)</label>
-              <div class="pill"><span id="devV" class="value">0.55</span></div>
-            </div>
-            <input id="dev" type="range" min="0" max="1" step="0.01" value="0.55" />
-          </div>
-          <div>
-            <div class="row">
-              <label>Timing Window (kena slot auto‑review)</label>
-              <div class="pill"><span id="timeV" class="value">0.40</span></div>
-            </div>
-            <input id="time" type="range" min="0" max="1" step="0.01" value="0.40" />
-          </div>
-          <div>
-            <div class="row">
-              <label>Basis Probabilitas per Attempt</label>
-              <div class="pill"><span id="baseV" class="value">0.01</span></div>
-            </div>
-            <input id="base" type="range" min="0.001" max="0.05" step="0.001" value="0.01" />
-          </div>
-        </div>
-        <div class="stack" style="margin-top:14px">
-          <button class="btn" id="simulate">Simulasikan</button>
-          <button class="btn" id="reset" style="background:linear-gradient(135deg,#9aa6b2,#c6d0e3)">Reset</button>
-        </div>
-        <div class="kpi" style="margin-top:14px">
-          <div class="it">
-            <div class="muted">Probabilitas Sukses (total)</div>
-            <div id="pTotal" class="big ok">—</div>
-          </div>
-          <div class="it">
-            <div class="muted">Median Attempt Sampai Sukses</div>
-            <div id="medianAtt" class="big">—</div>
-          </div>
-          <div class="it">
-            <div class="muted">“Ilusi Instan” (≤ 3 attempt)</div>
-            <div id="pInstant" class="big warn">—</div>
-          </div>
-        </div>
-      </div>
-    </section><!-- Right column: Flow + Log -->
-<section class="card">
-  <div class="hd"><h2>Alur (Flow) & Log</h2></div>
-  <div class="bd">
-    <div class="flow">
-      <!-- Simple SVG flowchart -->
-      <svg viewBox="0 0 900 300" width="100%" height="100%">
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stop-color="#5b76ff"/><stop offset="100%" stop-color="#9bb3ff"/></linearGradient>
-        </defs>
-        <rect x="10" y="20" width="200" height="60" rx="14" fill="#16204b" stroke="#2b396d" />
-        <text x="110" y="55" fill="#e7edff" font-size="14" text-anchor="middle">Klik “Enter” di Panel</text>
-
-        <path d="M210,50 L300,50" stroke="url(#g1)" stroke-width="3" />
-        <rect x="300" y="20" width="260" height="60" rx="14" fill="#16204b" stroke="#2b396d" />
-        <text x="430" y="45" fill="#e7edff" font-size="14" text-anchor="middle">Bot: Kirim N Attempt</text>
-        <text x="430" y="65" fill="#95a1c3" font-size="12" text-anchor="middle">(variasi IP, device, wording, timing)</text>
-
-        <path d="M560,50 L650,50" stroke="url(#g1)" stroke-width="3" />
-        <rect x="650" y="20" width="230" height="60" rx="14" fill="#16204b" stroke="#2b396d" />
-        <text x="765" y="45" fill="#e7edff" font-size="14" text-anchor="middle">RLS Auto‑Screen</text>
-
-        <path d="M765,80 L765,140" stroke="#5b76ff" stroke-width="3" />
-        <rect x="650" y="140" width="230" height="60" rx="14" fill="#122c22" stroke="#1f5844" />
-        <text x="765" y="165" fill="#b9f6d3" font-size="14" text-anchor="middle">Match Rule → Auto Unban</text>
-
-        <path d="M765,80 L765,260" stroke="#9a1d1d" stroke-width="3" />
-        <rect x="650" y="230" width="230" height="60" rx="14" fill="#2a1414" stroke="#6f2a2a" />
-        <text x="765" y="265" fill="#f4b4b4" font-size="14" text-anchor="middle">No Match → Ditolak</text>
-
-        <path d="M430,80 L430,160" stroke="#5b76ff" stroke-width="2" stroke-dasharray="6 6"/>
-        <rect x="290" y="160" width="280" height="60" rx="14" fill="#16204b" stroke="#2b396d" />
-        <text x="430" y="190" fill="#e7edff" font-size="14" text-anchor="middle">Sebagian kecil dibaca manusia</text>
-      </svg>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zM223.9 439.6c-38.2 0-73.5-11.6-103.1-32.5L39.7 433l33.9-108.2a192.3 192.3 0 0 1-34.6-101.7c0-106.3 86.2-192.5 192.5-192.5s192.5 86.2 192.5 192.5-86.2 192.5-192.5 192.5zM319.4 309.4c-11.4-5.7-67.6-33.3-78.1-37.1-10.5-3.8-18.1 5.7-22 10.5-3.9 4.8-14.7 18.1-18.1 21.9-3.4 3.8-6.8 4.3-12.5 1.4-28.4-14.2-47.8-26.5-67.3-47.8-19.5-21.3-29.9-39.6-39.6-59.1-9.7-19.5-1.5-30.9 4.3-36.6 5.3-5.3 11.4-13.8 17.1-20.6 5.7-6.8 7.7-11.4 11.4-19.5 3.8-8.1 1.9-15.2-1.9-20.9-3.8-5.7-18.1-43.1-24.9-59.1-6.8-16.1-13.8-13.8-19.5-13.8-5.7 0-11.4-1.4-17.1-1.4-5.7 0-14.7 2.4-22 11.4-7.2 9-28.4 27.9-28.4 68.8 0 40.9 29.9 81.1 34.1 86.8 4.3 5.7 56.1 86.3 137.2 120.3 81.1 33.9 81.1 22.5 95.8 21.1 14.7-1.4 45.1-18.4 51.4-36.6 6.3-18.1 6.3-33.9 4.3-36.6-2-2.7-8.1-5.2-17.1-10.5z"/></svg>
     </div>
-    <div style="margin-top:12px" class="muted">Log simulasi (acak):</div>
-    <pre class="log" id="log">Klik “Simulasikan” untuk melihat percobaan paralel & hasilnya…</pre>
-  </div>
-</section>
+    <h1>Formulir Banding Akun WhatsApp</h1>
+  </header>
+  <div class="sub">Gunakan formulir ini untuk mengirimkan permohonan banding atas pemblokiran akun WhatsApp Anda. Isi semua kolom dengan data yang benar.</div>
 
-  </main>  <section class="foot">
-    <h3 style="margin:6px 0 10px">Bagaimana angka dihitung?</h3>
-    <ol>
-      <li><b>Probabilitas per attempt</b> = <code>p_single</code> = <em>base</em> × f(wording, IP, device, timing).</li>
-      <li><b>Probabilitas total</b> (≥ 1 sukses dari N attempt) = <code>1 − (1 − p_single)<sup>N</sup></code>.</li>
-      <li>Kita jalankan 2.000 percobaan Monte Carlo untuk estimasi <em>median attempt hingga sukses</em> dan peluang “ilusi instan” (sukses ≤ 3 attempt).</li>
-    </ol>
-    <p class="muted">Simulasi ini <u>bukan</u> cerminan akurat sistem asli Meta. Tujuan utamanya edukasi: memahami bagaimana <b>skala + variasi</b> dapat menaikkan peluang sehingga tampak “instan”.</p>
-    <p class="warn">Etika: Jangan gunakan teknik otomatisasi untuk melanggar ketentuan layanan. Pendekatan paling aman adalah banding resmi, jujur, sekali, dan sabar.</p>
-  </section>  <script>
-    const el = id => document.getElementById(id);
-    const attempts = el('attempts'), attemptsV = el('attemptsV');
-    const word = el('word'), wordV = el('wordV');
-    const ip = el('ip'), ipV = el('ipV');
-    const dev = el('dev'), devV = el('devV');
-    const timeW = el('time'), timeV = el('timeV');
-    const base = el('base'), baseV = el('baseV');
-    const pTotal = el('pTotal'), medianAtt = el('medianAtt'), pInstant = el('pInstant');
-    const logEl = el('log');
+  <main>
+    <section class="card">
+      <div class="hd"><h2>Data Permohonan Banding</h2></div>
+      <div class="bd">
+        <form id="appealForm">
+          <div class="form-group">
+            <label for="whatsappNumber">Nomor WhatsApp yang Diblokir (Gunakan format internasional)</label>
+            <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="Contoh: +6281234567890" required>
+          </div>
 
-    const fmtPct = x => (x*100).toFixed(1) + '%';
-    const clamp01 = x => Math.max(0, Math.min(1, x));
+          <div class="form-group">
+            <label for="emailTo">Email Tujuan Dukungan WhatsApp</label>
+            <input type="email" id="emailTo" name="emailTo" value="smb@support.whatsapp.com" readonly>
+          </div>
 
-    function updateLabels(){
-      attemptsV.textContent = attempts.value;
-      wordV.textContent = (+word.value).toFixed(2);
-      ipV.textContent = (+ip.value).toFixed(2);
-      devV.textContent = (+dev.value).toFixed(2);
-      timeV.textContent = (+timeW.value).toFixed(2);
-      baseV.textContent = (+base.value).toFixed(3);
-      const {p_single, p_total} = computeProb();
-      pTotal.textContent = fmtPct(p_total);
-    }
+          <div class="form-group">
+            <label for="appealText">Teks Permohonan Banding</label>
+            <textarea id="appealText" name="appealText" placeholder="Tuliskan permohonan banding Anda di sini..." required>Kepada Tim Dukungan WhatsApp,
 
-    function computeProb(){
-      // Sederhana: f = w^0.4 * ip^0.3 * dev^0.2 * time^0.1, diberi offset kecil
-      const w = +word.value, i = +ip.value, d = +dev.value, t = +timeW.value, b = +base.value, n = +attempts.value;
-      const mul = Math.pow(w, .4) * Math.pow(i, .3) * Math.pow(d, .2) * Math.pow(t, .1);
-      const p_single = clamp01(b * (0.6 + 0.8*mul));
-      const p_total = 1 - Math.pow(1 - p_single, n);
-      return {p_single, p_total};
-    }
+Saya menulis surat ini untuk mengajukan banding atas pemblokiran akun WhatsApp saya dengan nomor [NOMOR ANDA DI SINI].
 
-    function simulate(){
-      const nRuns = 2000; // untuk estimasi statistik cepat
-      const n = +attempts.value;
-      const {p_single, p_total} = computeProb();
-      const attemptsToSuccess = [];
-      let instant = 0;
+Saya yakin pemblokiran ini terjadi karena kesalahpahaman. Saya adalah pengguna yang mematuhi Ketentuan Layanan dan tidak pernah terlibat dalam aktivitas spam, penipuan, atau tindakan lain yang melanggar kebijakan.
 
-      for(let r=0;r<nRuns;r++){
-        let ok = false; let k=0;
-        for(k=1;k<=n;k++){
-          if(Math.random() < p_single){ ok = true; break; }
-        }
-        if(ok){
-          attemptsToSuccess.push(k);
-          if(k <= 3) instant++;
-        } else {
-          attemptsToSuccess.push(Infinity);
-        }
+Akun ini sangat penting bagi saya untuk berkomunikasi dengan keluarga, teman, dan untuk keperluan pekerjaan. Pemblokiran ini telah menyebabkan gangguan yang signifikan.
+
+Saya mohon Anda dapat meninjau kembali kasus saya dan mengaktifkan kembali akun saya sesegera mungkin. Saya bersedia memberikan informasi tambahan atau verifikasi jika diperlukan.
+
+Terima kasih atas perhatian dan pengertian Anda.
+
+Hormat saya,
+[NAMA ANDA DI SINI]</textarea>
+          </div>
+
+          <div class="form-group">
+             <label for="mediaUpload">Unggah Bukti (Opsional)</label>
+             <div class="file-input-wrapper">
+                <button type="button" onclick="document.getElementById('mediaUpload').click()">Pilih File</button>
+                <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,video/*,.pdf,.doc,.docx">
+             </div>
+             <div class="file-name" id="fileName">Belum ada file yang dipilih</div>
+          </div>
+          
+          <button type="submit" class="btn">Kirim Permohonan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <section class="foot">
+    <p class="warn"><b>Penting:</b> Formulir ini adalah alat bantu untuk memudahkan Anda menyusun email banding. Pengiriman banding yang sebenarnya tetap harus dilakukan melalui aplikasi email Anda. Setelah menekan tombol "Kirim", aplikasi email default Anda akan terbuka dengan data yang sudah terisi.</p>
+    <p>Pastikan untuk mengirim permohonan banding sekali saja dan tunggu respons dari pihak WhatsApp dengan sabar. [9] Mengirim permintaan berulang kali dapat memperlambat proses peninjauan. [2]</p>
+  </section>
+
+  <script>
+    const appealForm = document.getElementById('appealForm');
+    const whatsappNumberInput = document.getElementById('whatsappNumber');
+    const appealTextInput = document.getElementById('appealText');
+    const mediaUploadInput = document.getElementById('mediaUpload');
+    const fileNameDisplay = document.getElementById('fileName');
+
+    // Ganti placeholder di textarea dengan nomor telepon saat diketik
+    whatsappNumberInput.addEventListener('input', function() {
+      const number = this.value || '[NOMOR ANDA DI SINI]';
+      appealTextInput.value = appealTextInput.value.replace(/\[NOMOR ANDA DI SINI\]/g, number);
+    });
+
+    // Tampilkan nama file yang dipilih
+    mediaUploadInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        fileNameDisplay.textContent = this.files[0].name;
+      } else {
+        fileNameDisplay.textContent = 'Belum ada file yang dipilih';
       }
+    });
 
-      // median finite attempts
-      const finite = attemptsToSuccess.filter(x=>isFinite(x)).sort((a,b)=>a-b);
-      const med = finite.length ? finite[Math.floor(finite.length/2)] : '—';
-      const pInst = instant / nRuns;
+    appealForm.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-      medianAtt.textContent = (med==='—'? '—' : med + 'x');
-      pInstant.textContent = fmtPct(pInst);
+      const recipient = document.getElementById('emailTo').value;
+      const subject = `Permohonan Banding untuk Akun WhatsApp: ${whatsappNumberInput.value}`;
+      const body = encodeURIComponent(appealTextInput.value);
 
-      // Buat log satu skenario realtime
-      const rounds = Math.min(n, 80); // batasi tampilan log
-      let out = [];
-      out.push(`[INFO] Mengirim ${n} appeal paralel (p_single ~ ${ (p_single*100).toFixed(2) }%)`);
-      for(let k=1;k<=rounds;k++){
-        const pass = Math.random() < p_single;
-        out.push(pass ? `[#${k}] ✅ MATCH (RLS) → akun dipulihkan` : `[#${k}] ❌ no match`);
-        if(pass){
-          out.push(`→ Hasil akhir: UNBAN via auto‑review setelah attempt #${k}`);
-          break;
-        }
-        if(k===rounds && rounds<n) out.push(`… (${n - rounds} attempt lain disembunyikan dalam log)`);
+      // Membuat mailto link. Ini akan membuka aplikasi email default pengguna.
+      // Pengunggahan file tidak dapat dilakukan secara otomatis melalui mailto.
+      // Pengguna harus melampirkan file secara manual di aplikasi email mereka.
+      let mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      
+      window.location.href = mailtoLink;
+
+      if(mediaUploadInput.files.length > 0) {
+        alert("Aplikasi email Anda akan terbuka. Mohon lampirkan file bukti secara manual sebelum mengirim email.");
       }
-      if(!out.some(line=>line.includes('UNBAN'))){
-        out.push('→ Hasil akhir: tetap ditolak pada semua attempt');
-      }
-      logEl.textContent = out.join('\n');
-
-      // Update probabilitas total (untuk tampilan atas)
-      pTotal.textContent = fmtPct(p_total);
-    }
-
-    function reset(){
-      attempts.value = 50; word.value=0.60; ip.value=0.50; dev.value=0.55; timeW.value=0.40; base.value=0.010;
-      updateLabels();
-      logEl.textContent = 'Klik “Simulasikan” untuk melihat percobaan paralel & hasilnya…';
-      medianAtt.textContent = '—'; pInstant.textContent='—';
-    }
-
-    ['input','change'].forEach(ev=>{
-      attempts.addEventListener(ev, updateLabels);
-      word.addEventListener(ev, updateLabels);
-      ip.addEventListener(ev, updateLabels);
-      dev.addEventListener(ev, updateLabels);
-      timeW.addEventListener(ev, updateLabels);
-      base.addEventListener(ev, updateLabels);
-    })
-    el('simulate').addEventListener('click', simulate);
-    el('reset').addEventListener('click', reset);
-
-    // init
-    updateLabels();
-  </script></body>
+    });
+  </script>
+</body>
 </html>
