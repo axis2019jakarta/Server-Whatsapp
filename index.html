@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulir Banding Akun WhatsApp</title>
+  <title>Nabila Ahmad Studio Development Banding Akun WhatsApp</title>
   <style>
     :root{
       --bg:#0b1020;--panel:#121931;--muted:#95a1c3;--text:#e7edff;--accent:#7aa2ff;--good:#34d399;--bad:#ef4444;--warn:#f59e0b;
@@ -22,9 +22,10 @@
     .card .bd{padding:16px 18px}
     .form-group{margin-bottom:16px}
     label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type=text],input[type=email],textarea{width:100%;background:#0c1430;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px;color:var(--text);font-family:inherit;font-size:15px;}
-    textarea{min-height:150px;resize:vertical}
-    input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+    input[type=text],input[type=email],textarea,select{width:100%;background:#0c1430;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px;color:var(--text);font-family:inherit;font-size:15px;}
+    select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2395a1c3' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:1em;}
+    textarea{min-height:200px;resize:vertical}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
     .btn{appearance:none;border:0;cursor:pointer;width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#25D366,#128C7E);color:white;font-weight:800;font-size:16px;box-shadow:var(--shadow)}
     .btn:active{transform:translateY(1px)}
     .file-input-wrapper {position: relative;overflow: hidden;display: inline-block;width:100%;cursor:pointer;border-radius:12px;padding:12px 14px;text-align:center;background:#0c1430;border:1px dashed rgba(255,255,255,.3);}
@@ -32,6 +33,7 @@
     .file-input-wrapper input[type=file]{font-size:100px;position:absolute;left:0;top:0;opacity:0;cursor:pointer}
     .file-name{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
     .foot{max-width:700px;margin:20px auto 60px;color:var(--muted);padding:0 16px;font-size:13px;text-align:center;}
+    .warn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.4);color:var(--warn);padding:12px;border-radius:12px;margin-bottom:16px;}
   </style>
 </head>
 <body>
@@ -39,103 +41,139 @@
     <div class="logo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zM223.9 439.6c-38.2 0-73.5-11.6-103.1-32.5L39.7 433l33.9-108.2a192.3 192.3 0 0 1-34.6-101.7c0-106.3 86.2-192.5 192.5-192.5s192.5 86.2 192.5 192.5-86.2 192.5-192.5 192.5zM319.4 309.4c-11.4-5.7-67.6-33.3-78.1-37.1-10.5-3.8-18.1 5.7-22 10.5-3.9 4.8-14.7 18.1-18.1 21.9-3.4 3.8-6.8 4.3-12.5 1.4-28.4-14.2-47.8-26.5-67.3-47.8-19.5-21.3-29.9-39.6-39.6-59.1-9.7-19.5-1.5-30.9 4.3-36.6 5.3-5.3 11.4-13.8 17.1-20.6 5.7-6.8 7.7-11.4 11.4-19.5 3.8-8.1 1.9-15.2-1.9-20.9-3.8-5.7-18.1-43.1-24.9-59.1-6.8-16.1-13.8-13.8-19.5-13.8-5.7 0-11.4-1.4-17.1-1.4-5.7 0-14.7 2.4-22 11.4-7.2 9-28.4 27.9-28.4 68.8 0 40.9 29.9 81.1 34.1 86.8 4.3 5.7 56.1 86.3 137.2 120.3 81.1 33.9 81.1 22.5 95.8 21.1 14.7-1.4 45.1-18.4 51.4-36.6 6.3-18.1 6.3-33.9 4.3-36.6-2-2.7-8.1-5.2-17.1-10.5z"/></svg>
     </div>
-    <h1>Formulir Banding Akun WhatsApp</h1>
+    <h1>Alat Bantu Banding Akun WhatsApp</h1>
   </header>
-  <div class="sub">Gunakan formulir ini untuk mengirimkan permohonan banding atas pemblokiran akun WhatsApp Anda. Isi semua kolom dengan data yang benar.</div>
+  <div class="sub">Alat ini membantu Anda membuat email banding ke tim support WhatsApp dengan cepat dan tepat.</div>
 
   <main>
     <section class="card">
-      <div class="hd"><h2>Data Permohonan Banding</h2></div>
+      <div class="hd"><h2>Langkah 1: Isi Data Permohonan</h2></div>
       <div class="bd">
         <form id="appealForm">
           <div class="form-group">
-            <label for="whatsappNumber">Nomor WhatsApp yang Diblokir (Gunakan format internasional)</label>
+            <label for="violationType">Pilih Jenis Pelanggaran/Masalah</label>
+            <select id="violationType" name="violationType" required>
+              <option value="temporary_ban">Unbanned Sementara</option>
+              <option value="otp_reset">Masalah Kode Verifikasi (OTP)</option>
+              <option value="mod_app">Pelanggaran Aplikasi Tidak Resmi (MOD)</option>
+              <option value="permanent_ban">Unbanned Permanen</option>
+              <option value="business_issue">Masalah Akun WhatsApp Business</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="whatsappNumber">Nomor WhatsApp Anda (Format internasional)</label>
             <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="Contoh: +6281234567890" required>
           </div>
 
           <div class="form-group">
-            <label for="emailTo">Email Tujuan Dukungan WhatsApp</label>
-            <input type="email" id="emailTo" name="emailTo" value="smb@support.whatsapp.com" readonly>
+            <label for="userEmail">Alamat Gmail Anda (Untuk mengirim permohonan)</label>
+            <input type="email" id="userEmail" name="userEmail" placeholder="Contoh: nama.anda@gmail.com" required>
           </div>
 
           <div class="form-group">
-            <label for="appealText">Teks Permohonan Banding</label>
-            <textarea id="appealText" name="appealText" placeholder="Tuliskan permohonan banding Anda di sini..." required>Kepada Tim Dukungan WhatsApp,
-
-Saya menulis surat ini untuk mengajukan banding atas pemblokiran akun WhatsApp saya dengan nomor [NOMOR ANDA DI SINI].
-
-Saya yakin pemblokiran ini terjadi karena kesalahpahaman. Saya adalah pengguna yang mematuhi Ketentuan Layanan dan tidak pernah terlibat dalam aktivitas spam, penipuan, atau tindakan lain yang melanggar kebijakan.
-
-Akun ini sangat penting bagi saya untuk berkomunikasi dengan keluarga, teman, dan untuk keperluan pekerjaan. Pemblokiran ini telah menyebabkan gangguan yang signifikan.
-
-Saya mohon Anda dapat meninjau kembali kasus saya dan mengaktifkan kembali akun saya sesegera mungkin. Saya bersedia memberikan informasi tambahan atau verifikasi jika diperlukan.
-
-Terima kasih atas perhatian dan pengertian Anda.
-
-Hormat saya,
-[NAMA ANDA DI SINI]</textarea>
+            <label for="appealText">Isi Pesan Permohonan (Otomatis terisi, bisa diubah)</label>
+            <textarea id="appealText" name="appealText" required></textarea>
           </div>
 
           <div class="form-group">
-             <label for="mediaUpload">Unggah Bukti (Opsional)</label>
+             <label for="mediaUpload">Unggah Bukti (Screenshot, dll)</label>
              <div class="file-input-wrapper">
                 <button type="button" onclick="document.getElementById('mediaUpload').click()">Pilih File</button>
-                <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,video/*,.pdf,.doc,.docx">
+                <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,.pdf">
              </div>
              <div class="file-name" id="fileName">Belum ada file yang dipilih</div>
           </div>
           
-          <button type="submit" class="btn">Kirim Permohonan</button>
+          <div class="form-group warn">
+            <b>Penting:</b> Anda akan diarahkan ke Gmail untuk mengirim email ini. Jangan lupa untuk <b>melampirkan file bukti Anda secara manual</b> di halaman Gmail.
+          </div>
+          
+          <button type="submit" class="btn">Buat & Kirim via Gmail</button>
         </form>
       </div>
     </section>
   </main>
   
   <section class="foot">
-    <p class="warn"><b>Penting:</b> Formulir ini adalah alat bantu untuk memudahkan Anda menyusun email banding. Pengiriman banding yang sebenarnya tetap harus dilakukan melalui aplikasi email Anda. Setelah menekan tombol "Kirim", aplikasi email default Anda akan terbuka dengan data yang sudah terisi.</p>
-    <p>Pastikan untuk mengirim permohonan banding sekali saja dan tunggu respons dari pihak WhatsApp dengan sabar. [9] Mengirim permintaan berulang kali dapat memperlambat proses peninjauan. [2]</p>
+    <p>Alat ini tidak menyimpan data pribadi Anda. Semua proses terjadi di browser Anda. Pastikan untuk mengirim permohonan banding sekali saja dan tunggu respons dari pihak WhatsApp dengan sabar. Mengirim permintaan berulang kali dapat memperlambat proses peninjauan. [2]</p>
   </section>
 
   <script>
-    const appealForm = document.getElementById('appealForm');
-    const whatsappNumberInput = document.getElementById('whatsappNumber');
-    const appealTextInput = document.getElementById('appealText');
-    const mediaUploadInput = document.getElementById('mediaUpload');
-    const fileNameDisplay = document.getElementById('fileName');
+    const ELS = {
+        form: document.getElementById('appealForm'),
+        violationType: document.getElementById('violationType'),
+        whatsappNumber: document.getElementById('whatsappNumber'),
+        userEmail: document.getElementById('userEmail'),
+        appealText: document.getElementById('appealText'),
+        mediaUpload: document.getElementById('mediaUpload'),
+        fileName: document.getElementById('fileName'),
+    };
 
-    // Ganti placeholder di textarea dengan nomor telepon saat diketik
-    whatsappNumberInput.addEventListener('input', function() {
-      const number = this.value || '[NOMOR ANDA DI SINI]';
-      appealTextInput.value = appealTextInput.value.replace(/\[NOMOR ANDA DI SINI\]/g, number);
+    const appealTemplates = {
+        temporary_ban: {
+            subject: "Banding Pemblokiran Akun Sementara",
+            email: "support@whatsapp.com",
+            body: `Kepada Tim Dukungan WhatsApp,\n\nAkun WhatsApp saya dengan nomor {phone_number} telah diblokir untuk sementara. Saya yakin ini adalah kesalahpahaman. Saya selalu berusaha mematuhi Ketentuan Layanan Anda.\n\nSaya menggunakan akun ini untuk komunikasi penting dan pemblokiran ini sangat mengganggu. Mohon tinjau kembali status akun saya dan pulihkan akses saya sesegera mungkin.\n\nTerima kasih atas perhatian Anda.\n\nHormat saya,`
+        },
+        otp_reset: {
+            subject: "Masalah Menerima Kode Verifikasi (OTP)",
+            email: "support@whatsapp.com",
+            body: `Kepada Tim Dukungan WhatsApp,\n\nSaya mengalami kesulitan untuk masuk ke akun WhatsApp saya dengan nomor {phone_number}. Saya tidak menerima kode verifikasi (OTP) meskipun sudah memintanya berulang kali.\n\nSaya sudah memeriksa koneksi internet dan sinyal seluler saya, dan semuanya berfungsi normal. Mohon bantuannya agar saya bisa mendapatkan kode verifikasi dan mengakses kembali akun saya.\n\nTerima kasih atas bantuannya.\n\nHormat saya,`
+        },
+        mod_app: {
+            subject: "Permohonan Maaf dan Banding Akun - Penggunaan Aplikasi Tidak Resmi",
+            email: "support@whatsapp.com",
+            body: `Kepada Tim Dukungan WhatsApp,\n\nSaya menulis surat ini untuk mengakui kesalahan saya karena telah menggunakan aplikasi WhatsApp yang tidak resmi (MOD) pada nomor saya {phone_number}, yang menyebabkan akun saya diblokir. Saya sekarang mengerti bahwa tindakan tersebut melanggar Ketentuan Layanan Anda dan membahayakan privasi serta keamanan.\n\nSaya dengan tulus meminta maaf dan berjanji tidak akan mengulangi kesalahan ini. Saya telah menghapus aplikasi tidak resmi tersebut dan telah menginstal aplikasi WhatsApp resmi dari Play Store/App Store.\n\nMohon berikan saya kesempatan kedua dengan membuka kembali blokir akun saya. Akun ini sangat penting bagi saya.\n\nTerima kasih atas pengertian Anda.\n\nHormat saya,`
+        },
+        permanent_ban: {
+            subject: "Permohonan Peninjauan Ulang atas Pemblokiran Permanen",
+            email: "support@whatsapp.com",
+            body: `Kepada Tim Dukungan WhatsApp,\n\nSaya sangat terkejut mengetahui bahwa akun WhatsApp saya dengan nomor {phone_number} telah diblokir secara permanen. Saya telah meninjau Ketentuan Layanan dan saya yakin tidak melakukan pelanggaran berat yang layak mendapatkan sanksi permanen.\n\nAkun ini memiliki riwayat komunikasi yang sangat penting bagi saya. Saya mohon dengan sangat agar tim Anda dapat melakukan peninjauan ulang yang mendalam terhadap kasus saya. Saya bersedia memberikan informasi apa pun yang diperlukan untuk proses ini.\n\nSaya berharap ada kekeliruan dan akun saya dapat dipulihkan.\n\nTerima kasih atas perhatian Anda.\n\nHormat saya,`
+        },
+        business_issue: {
+            subject: "Permohonan Banding untuk Akun WhatsApp Business",
+            email: "smb_web@support.whatsapp.com",
+            body: `Kepada Tim Dukungan WhatsApp Business,\n\nAkun WhatsApp Business kami dengan nomor {phone_number} telah diblokir. Akun ini merupakan jalur komunikasi utama kami dengan pelanggan dan pemblokiran ini berdampak signifikan pada operasional bisnis kami.\n\nKami yakin telah mematuhi Kebijakan Perdagangan dan Kebijakan WhatsApp Business. Jika ada pelanggaran yang tidak kami sadari, kami mohon petunjuk agar dapat segera kami perbaiki.\n\nKami mohon agar penangguhan akun kami dapat ditinjau kembali dan diaktifkan kembali secepatnya.\n\nTerima kasih.\n\nHormat kami,`
+        }
+    };
+
+    function updateAppealText() {
+        const type = ELS.violationType.value;
+        const template = appealTemplates[type];
+        const phone = ELS.whatsappNumber.value || '{phone_number}';
+        if (template) {
+            ELS.appealText.value = template.body.replace('{phone_number}', phone);
+        }
+    }
+
+    ELS.violationType.addEventListener('change', updateAppealText);
+    ELS.whatsappNumber.addEventListener('input', updateAppealText);
+    
+    ELS.mediaUpload.addEventListener('change', () => {
+        ELS.fileName.textContent = ELS.mediaUpload.files.length > 0 
+            ? ELS.mediaUpload.files[0].name 
+            : 'Belum ada file yang dipilih';
     });
 
-    // Tampilkan nama file yang dipilih
-    mediaUploadInput.addEventListener('change', function() {
-      if (this.files.length > 0) {
-        fileNameDisplay.textContent = this.files[0].name;
-      } else {
-        fileNameDisplay.textContent = 'Belum ada file yang dipilih';
-      }
-    });
-
-    appealForm.addEventListener('submit', function(e) {
+    ELS.form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const recipient = document.getElementById('emailTo').value;
-      const subject = `Permohonan Banding untuk Akun WhatsApp: ${whatsappNumberInput.value}`;
-      const body = encodeURIComponent(appealTextInput.value);
+      const type = ELS.violationType.value;
+      const template = appealTemplates[type];
+      const recipient = template.email;
+      const subject = `${template.subject}: ${ELS.whatsappNumber.value}`;
+      const body = ELS.appealText.value;
 
-      // Membuat mailto link. Ini akan membuka aplikasi email default pengguna.
-      // Pengunggahan file tidak dapat dilakukan secara otomatis melalui mailto.
-      // Pengguna harus melampirkan file secara manual di aplikasi email mereka.
-      let mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      // Membuat link untuk membuka Gmail
+      // https://mail.google.com/mail/?view=cm&fs=1&to=EMAIL&su=SUBJEK&body=ISI
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
-      window.location.href = mailtoLink;
-
-      if(mediaUploadInput.files.length > 0) {
-        alert("Aplikasi email Anda akan terbuka. Mohon lampirkan file bukti secara manual sebelum mengirim email.");
-      }
+      window.open(gmailLink, '_blank');
     });
+
+    // Inisialisasi teks saat halaman dimuat
+    updateAppealText();
   </script>
 </body>
 </html>
